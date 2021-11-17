@@ -1,0 +1,61 @@
+@startuml
+
+
+entity "顧客マスタ" as customer {
+  + 顧客ID [PK]
+  --
+  顧客名
+  電話番号
+}
+
+entity "注文テーブル" as order {
+  + 注文ID [PK]
+  --
+  # 顧客ID [FK]
+  注文日時
+  支払い済みフラグ
+}
+
+entity "注文明細テーブル" as order_detail {
+  + 注文ID   [PK]
+  + 明細番号 [PK]
+  --
+  商品ID [FK]
+  皿数
+  さび抜きフラグ
+}
+
+entity "商品マスタ" as product {
+  + 商品ID [PK]
+  --
+  商品名
+  価格ID [FK]
+}
+
+entity "価格マスタ" as price {
+  + 価格ID [PK]
+  --
+  価格
+}
+
+/'
+関係性
+------   :1
+----||   :1 and only 1
+----o|   :0 or 1
+-----{   :many
+----|{   :1 or more
+----o{   :0 or many
+
+entityの位置
+ri ...right
+le ...left
+do ...down
+'/
+customer       |o-ri-o{     order
+order          ||-ri-|{     order_detail
+order_detail   }-ri-||     product
+product        }|-ri-||    price
+
+@enduml
+

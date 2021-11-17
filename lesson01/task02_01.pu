@@ -1,0 +1,84 @@
+@startuml
+
+
+entity "顧客マスタ" as customer {
+  + 顧客ID [PK]
+  --
+  顧客名
+  電話番号
+}
+
+entity "注文テーブル" as order {
+  + 注文ID [PK]
+  --
+  # 顧客ID [FK]
+  注文日時
+  支払い済みフラグ
+}
+
+entity "注文明細テーブル" as order_detail {
+  + 注文ID   [PK]
+  + 明細番号 [PK]
+  --
+  商品ID [FK]
+  個数
+  さび抜きフラグ
+  シャリタイプ(大, 小)
+}
+
+/'
+  セットメニュー, お好みすし
+'/
+entity "商品マスタ" as product {
+  + 商品ID [PK]
+  --
+  商品名
+  価格ID [FK]
+  商品タイプ(寿司, セットメニュー)
+  セット商品ID [FK]
+}
+
+/'
+  セットメニューの寿司ネタをリンクする
+'/
+entity "セット商品リンク" as set_product {
+  + セット商品ID(商品ID) [PK]
+  + 商品ID [PK]
+  --
+}
+
+/'
+  価格IDで価格を管理
+
+  いけていない点
+    寿司の皿ごとに値段を設定可能だが、
+    セットメニューそれぞれに価格IDが必要
+'/
+entity "価格マスタ" as price {
+  + 価格ID [PK]
+  --
+  価格
+}
+
+/'
+  関係性
+  ------   :1
+  ----||   :1 and only 1
+  ----o|   :0 or 1
+  -----{   :many
+  ----|{   :1 or more
+  ----o{   :0 or many
+
+  entityの位置
+  ri ...right
+  le ...left
+  do ...down
+'/
+customer       |o-ri-o{     order
+order          ||-ri-|{     order_detail
+order_detail   }-ri-||      product
+product        ||-ri-o{     set_product
+product        }o-do-||     price
+
+@enduml
+
