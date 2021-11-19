@@ -34,7 +34,18 @@ entity "商品マスタ" as product {
   + 商品ID [PK]
   --
   商品名
+  商品カテゴリID [FK]
   価格ID [FK]
+}
+
+/'
+  商品カテゴリ
+  例:お好みすし, デザート
+'/
+entity "商品カテゴリ" as product_category {
+  + 商品カテゴリID [PK]
+  --
+  商品カテゴリ名
 }
 
 /'
