@@ -45,6 +45,17 @@ entity "セット商品リンク" as set_product {
   + セット商品ID(商品ID) [PK]
   + 商品ID [PK]
   --
+  セット商品カテゴリID [FK]
+}
+
+/'
+  セット商品のカテゴリ名
+  例:盛り込み、にぎり
+'/
+entity "セット商品カテゴリ" as set_product_category {
+  + セット商品カテゴリID [PK]
+  --
+  セット商品名カテゴリ名
 }
 
 /'
