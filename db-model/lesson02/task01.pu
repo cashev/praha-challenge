@@ -1,0 +1,59 @@
+@startuml
+
+/'
+  メッセージ
+  スレッドメッセージ
+  チャンネル
+  ユーザー 
+ '/
+
+entity "ユーザー" as users {
+  + ユーザーID [PK]
+  --
+  ユーザー名
+}
+
+entity "チャンネル" as channels {
+  + チャンネルID [PK]
+  --
+  チャンネル名
+}
+
+entity "チャンネル_ユーザーリンク" as channels_user_link {
+  + チャンネルID [PK]
+  + ユーザーID [PK]
+}
+
+entity "メッセージ" as messages {
+  + チャンネルID [PK]
+  + メッセージID [PK]
+  --
+  本文
+  発言日時
+}
+
+entity "スレッドメッセージリンク" as thread_message_link {
+  + メッセージID   [PK]
+  + スレッドメッセージID [PK]
+}
+
+/'
+関係性
+------   :1
+----||   :1 and only 1
+----o|   :0 or 1
+-----{   :many
+----|{   :1 or more
+----o{   :0 or many
+
+entityの位置
+ri ...right
+le ...left
+do ...down
+'/
+users    --ri-{ channels_user_link
+channels --le-{ channels_user_link
+channels ---{ messages
+messages }--{ thread_message_link
+
+@enduml
