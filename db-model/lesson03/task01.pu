@@ -1,0 +1,55 @@
+@startuml
+
+/'
+  ドキュメント
+  ディレクトリ
+  ユーザ
+ '/
+
+entity "ユーザー" as users {
+  + ユーザーID [PK]
+  --
+  ユーザー名
+}
+
+entity "アイテム" as items {
+  + アイテムID [PK]
+  --
+  アイテム名
+  ディレクトリフラグ
+}
+
+entity "閉方テーブル" as closure {
+  + 親ID [PK]
+  + 子ID [PK]
+  + 深さ [PK]
+}
+
+entity "最新テキスト内容" as last_text_contents {
+  + アイテムID [PK]
+  + バージョン [PK]
+  --
+  ユーザーID [FK]
+  テキスト内容
+  日時
+}
+
+/'
+関係性
+------   :1
+----||   :1 and only 1
+----o|   :0 or 1
+-----{   :many
+----|{   :1 or more
+----o{   :0 or many
+
+entityの位置
+ri ...right
+le ...left
+do ...down
+'/
+items }-do-{ closure
+items --ri-{ last_text_contents
+last_text_contents }-ri-- users
+
+@enduml
