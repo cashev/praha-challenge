@@ -7,13 +7,21 @@
   ユーザー 
  '/
 
+entity "ワークスペース" as workspaces {
+  + ワークスペースID [PK]
+  --
+  ワークスペース名
+}
+
 entity "ユーザー" as users {
+  + ワークスペースID [PK]
   + ユーザーID [PK]
   --
   ユーザー名
 }
 
 entity "チャンネル" as channels {
+  + ワークスペースID [PK]
   + チャンネルID [PK]
   --
   チャンネル名
@@ -51,6 +59,8 @@ ri ...right
 le ...left
 do ...down
 '/
+workspaces --{ users
+workspaces --{ channels
 users    --ri-{ channels_user_link
 channels --le-{ channels_user_link
 channels ---{ messages
