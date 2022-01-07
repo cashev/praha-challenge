@@ -1,0 +1,48 @@
+@startuml
+
+/'
+  ユーザー
+  クーロンジョブ
+  ユーザー_ジョブ_リンク
+ '/
+
+
+entity "ユーザー" as users {
+  + ユーザーID [PK]
+  --
+  ユーザー名
+}
+
+entity "クーロンジョブ" as cronjobs {
+  + ジョブID [PK]
+  --
+  リマインド文面
+  cronスケジュール式
+  次回実行日時
+  設定ユーザー
+}
+
+entity "ユーザージョブリンク" as user_job_links {
+  + ユーザーID [PK]
+  + ジョブID [PK]
+}
+
+/'
+関係性
+------   :1
+----||   :1 and only 1
+----o|   :0 or 1
+-----{   :many
+----|{   :1 or more
+----o{   :0 or many
+
+entityの位置
+ri ...right
+le ...left
+do ...down
+'/
+users --do-o{ user_job_links
+users --do-o{ cronjobs
+user_job_links }-ri-- cronjobs
+
+@enduml
