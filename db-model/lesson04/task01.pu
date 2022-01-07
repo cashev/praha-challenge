@@ -19,6 +19,7 @@ entity "クーロンジョブ" as cronjobs {
   リマインド文面
   cronスケジュール式
   次回実行日時
+  設定ユーザー
 }
 
 entity "ユーザージョブリンク" as user_job_links {
@@ -40,7 +41,8 @@ ri ...right
 le ...left
 do ...down
 '/
-users --ri-{ user_job_links
+users --do-o{ user_job_links
+users --do-o{ cronjobs
 user_job_links }-ri-- cronjobs
 
 @enduml
