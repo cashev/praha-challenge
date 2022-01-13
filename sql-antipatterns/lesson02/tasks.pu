@@ -1,0 +1,52 @@
+・課題1
+  ・"tagA"と"tagB"をもつレコードを検索する場合、クエリが難しくなる
+    それぞれのカラム(tag1, tag2, tag3)で 「tag1 = "tagA" or tag2 ="tagB"」みたいに検索する必要がある
+    ⇨ この場合は「"tagA" IN (tag1, tag2, tag3) AND "tagB" IN (tag1, tag2, tag3)」で検索可能
+  ・"tagA"を"tabX"へリネームする場合、"tagA"をもつレコード全てで更新が必要
+  ・"tagA"が複数のカラムに入り込む可能性があるためアプリ側で制御が必要
+  ・3つまでしか指定できない
+  ・集約関数の使用が難しい
+
+・課題2
+@startuml
+
+entity "Post" as posts {
+    id [PK]
+    --
+    text: varchar
+}
+
+entity "Post_Tag_Links" as post_tag_links {
+    post_id [PK]
+    tag_id [PK]
+}
+
+entity "Tags" as tags {
+    id [PK]
+    --
+    name: varchar
+}
+
+/'
+関係性
+------   :1
+----||   :1 and only 1
+----o|   :0 or 1
+-----{   :many
+----|{   :1 or more
+----o{   :0 or many
+
+entityの位置
+ri ...right
+le ...left
+do ...down
+'/
+posts ||--ri--o{ post_tag_links
+tags ||--le--o{ post_tag_links
+
+@enduml
+
+・課題3
+  ・レストランのセットメニューが2つの組み合わせだったが、
+    3つ,4つの組み合わせに増えた
+  ・備考は1つだけだったが、要望によって備考2, 備考3の列が増えた
