@@ -1,0 +1,51 @@
+・課題1
+  ・Commentテーブルのbelongs_to_idカラムに外部キー制約が設定できないため、不正な値が入り込む
+    (typeカラムにはEnum制約などが適用できる)
+  ・belongs_to_idカラムにMangaのid、typeカラムにnovelが入り込む
+
+・課題2
+@startuml
+entity "Books" as books {
+    id [PK]
+    --
+    name
+}
+
+entity "Manga" as manga {
+    book_id [PK]
+}
+
+entity "Novel" as novel {
+    book_id [PK]
+}
+
+entity "Comment" as comment {
+    comment_id [PK]
+    --
+    book_id [FK]
+    text
+}
+
+/'
+関係性
+------   :1
+----||   :1 and only 1
+----o|   :0 or 1
+-----{   :many
+----|{   :1 or more
+----o{   :0 or many
+
+entityの位置
+ri ...right
+le ...left
+do ...down
+'/
+books ||-do-o| manga
+books ||-do-o| novel
+books ||-do-o{ comment
+
+@enduml
+
+・課題3
+  ・Slackなどのメッセージとスレッドメッセージに対して、
+    スタンプを管理する場合
