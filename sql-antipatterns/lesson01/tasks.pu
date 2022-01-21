@@ -1,0 +1,47 @@
+・課題1
+  ・"tagA"と"tagB"をもつレコードを検索する場合、クエリが難しくなる
+  ・"tagA"を"tabX"へリネームする場合、"tagA"をもつレコード全てで更新が必要
+  ・"tags"カラムに不整合な値が入り込む可能性があるためアプリ側で制御が必要
+    例:"tagA,tagA"
+
+・課題2
+@startuml
+
+entity "Post" as posts {
+    id [PK]
+    --
+    text: varchar
+}
+
+entity "Post_Tag_Links" as post_tag_links {
+    post_id [PK]
+    tag_id [PK]
+}
+
+entity "Tags" as tags {
+    id [PK]
+    --
+    name: varchar
+}
+
+/'
+関係性
+------   :1
+----||   :1 and only 1
+----o|   :0 or 1
+-----{   :many
+----|{   :1 or more
+----o{   :0 or many
+
+entityの位置
+ri ...right
+le ...left
+do ...down
+'/
+posts ||--ri--o{ post_tag_links
+tags ||--le--o{ post_tag_links
+
+@enduml
+
+・課題3
+ユーザがチェックしたチェックボックスを「,」区切りで保存する
