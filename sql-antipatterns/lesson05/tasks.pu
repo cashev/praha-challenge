@@ -1,0 +1,66 @@
+・課題1
+  ・同じ顧客から再度商談があった場合、新規顧客レコードが作成される
+
+・課題2
+@startuml
+
+/'
+  顧客
+'/
+entity "Customers" as customers {
+    id: varchar
+    --
+    name: varchar
+}
+
+/'
+  商談
+  call_times(電話回数)、meet_times(面談回数)は
+  電話、面談に挿入する度に+1更新する
+  -> Countでも良さそう
+'/
+entity "Opportunities" as opportunities {
+    id: varchar
+    --
+    customer_id: varchar
+    call_times: int
+    meet_times: int
+    closed: boolean
+    date: date
+}
+
+/'
+  電話
+'/
+entity "Callings" as callings {
+    id: varchar
+    --
+    opportunity_id: varchar
+    date: date
+}
+
+/'
+  面談
+'/
+entity "Meetings" as meetings {
+    id: varchar
+    --
+    opportunity_id: varchar
+    date: date
+}
+
+customers ||-ri--o{ opportunities
+opportunities ||-ri-o{ callings
+opportunities ||-do-o{ meetings
+
+@enduml
+
+・課題3
+  ・ECサイトで注文テーブルを使い
+    代金の支払い済みフラグ, 支払日
+    商品の発送済みフラグ、発送日
+    を管理する
+
+参考
+失敗から学ぶRDBの正しい歩き方
+第15章 簡単過ぎる不整合
