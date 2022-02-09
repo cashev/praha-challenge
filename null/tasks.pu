@@ -1,0 +1,46 @@
+・課題1
+  ・NULL = 0
+    -> Null
+  ・NULL = NULL
+    -> Null
+  ・NULL <> NULL
+    -> Null
+  ・NULL AND TRUE
+    -> Null
+  ・NULL AND FALSE
+    -> FALSE
+  ・NULL OR TRUE
+    -> TRUE
+
+・課題2
+@startuml
+
+entity Assignee {
+    id [PK]
+    --
+    name
+}
+
+entity Assignee_Issue_link {
+    assignee_id [PK]
+    issue_id [PK]
+}
+
+entity Issue {
+    id [PK]
+    --
+    text
+}
+
+@enduml
+
+・Nullはあってもよい
+  ただしNullにならないものにはNot Null制約は必要
+
+・課題3 クイズ
+IS NULL はインデックが使われるでしょうか?
+
+・参考
+SQLアンチパターン 13章 フィア・オブ・ジ・アンノウン(恐怖のunknown)
+https://www.firebirdsql.org/pdfmanual/html/nullguide-oper.html
+https://techblog.istyle.co.jp/archives/1514
