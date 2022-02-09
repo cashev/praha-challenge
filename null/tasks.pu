@@ -32,6 +32,9 @@ entity Issue {
     text
 }
 
+Assignee ||--ri--o{ Assignee_Issue_link
+Issue ||-le-o{ Assignee_Issue_link
+
 @enduml
 
 ・Nullはあってもよい
