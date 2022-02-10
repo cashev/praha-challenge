@@ -1,0 +1,29 @@
+・課題1
+  ・スレッド直下1つだけを取得する場合は問題ないが、
+    スレッド全てのメッセージを取得する場合、再起的なクエリが必要
+
+・課題2
+@startuml
+
+entity "Message" as message {
+    id: varchar [PK]
+    --
+    text: varchar
+}
+
+entity "Message_links" as message_links {
+    parent_id: varchar
+    child_id: varchar
+    --
+    depth: int
+}
+
+message }-ri-{ message_links
+
+@enduml
+
+・課題3
+  ・ブログ記事に対するコメントを1つ前のコメントで親子づけした場合
+
+参考
+SQL アンチパターン 2章 ナイーブツリー(素朴な木)
