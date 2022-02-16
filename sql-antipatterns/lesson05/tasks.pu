@@ -15,27 +15,46 @@ entity "Customers" as customers {
 
 /'
   商談
-  call_times(電話回数)、meet_times(面談回数)は
-  電話、面談に挿入する度に+1更新する
-  -> Countでも良さそう
 '/
 entity "Opportunities" as opportunities {
-    id: varchar
-    --
     customer_id: varchar
-    call_times: int
-    meet_times: int
-    closed: boolean
-    date: date
+    opportunity_id: varchar
+    --
+    created_date: date
+}
+
+/'
+  商談中
+'/
+entity "Processing Oppotunities" as processing_opportunities {
+    opportunity_id: varchar
+}
+
+/'
+  成立した商談
+'/
+entity "Closed Oppotunities" as closed_opportunities {
+    opportunity_id: varchar
+    --
+    closed_date: date
+}
+
+/'
+  キャンセルされた商談
+'/
+entity "Canceled Oppotunities" as canceled_opportunites {
+    opportunity_id: varchar
+    --
+    canceled_date: date
 }
 
 /'
   電話
 '/
 entity "Callings" as callings {
+    opportunity_id: varchar
     id: varchar
     --
-    opportunity_id: varchar
     date: date
 }
 
@@ -43,15 +62,18 @@ entity "Callings" as callings {
   面談
 '/
 entity "Meetings" as meetings {
+    opportunity_id: varchar
     id: varchar
     --
-    opportunity_id: varchar
     date: date
 }
 
 customers ||-ri--o{ opportunities
+opportunities ||-do-o{ processing_opportunities
+opportunities ||-do-o{ closed_opportunities
+opportunities ||-do-o{ canceled_opportunites
 opportunities ||-ri-o{ callings
-opportunities ||-do-o{ meetings
+opportunities ||-ri-o{ meetings
 
 @enduml
 
