@@ -1,0 +1,88 @@
+・課題1
+  ・同じ顧客から再度商談があった場合、新規顧客レコードが作成される
+
+・課題2
+@startuml
+
+/'
+  顧客
+'/
+entity "Customers" as customers {
+    id: varchar
+    --
+    name: varchar
+}
+
+/'
+  商談
+'/
+entity "Opportunities" as opportunities {
+    customer_id: varchar
+    opportunity_id: varchar
+    --
+    created_date: date
+}
+
+/'
+  商談中
+'/
+entity "Processing Oppotunities" as processing_opportunities {
+    opportunity_id: varchar
+}
+
+/'
+  成立した商談
+'/
+entity "Closed Oppotunities" as closed_opportunities {
+    opportunity_id: varchar
+    --
+    closed_date: date
+}
+
+/'
+  キャンセルされた商談
+'/
+entity "Canceled Oppotunities" as canceled_opportunites {
+    opportunity_id: varchar
+    --
+    canceled_date: date
+}
+
+/'
+  電話
+'/
+entity "Callings" as callings {
+    opportunity_id: varchar
+    id: varchar
+    --
+    date: date
+}
+
+/'
+  面談
+'/
+entity "Meetings" as meetings {
+    opportunity_id: varchar
+    id: varchar
+    --
+    date: date
+}
+
+customers ||-ri--o{ opportunities
+opportunities ||-do-o{ processing_opportunities
+opportunities ||-do-o{ closed_opportunities
+opportunities ||-do-o{ canceled_opportunites
+opportunities ||-ri-o{ callings
+opportunities ||-ri-o{ meetings
+
+@enduml
+
+・課題3
+  ・ECサイトで注文テーブルを使い
+    代金の支払い済みフラグ, 支払日
+    商品の発送済みフラグ、発送日
+    を管理する
+
+参考
+失敗から学ぶRDBの正しい歩き方
+第15章 簡単過ぎる不整合
