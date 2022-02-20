@@ -18,9 +18,9 @@ LEFT OUTER JOIN Customers
   ON Customers.CustomerID = Orders.CustomerID
 WHERE strftime('%Y', Orders.OrderDate) = '1996'
 GROUP BY Orders.CustomerID 
-HAVING COUNT(*) >= 3 
+HAVING OrderCount >= 3 
 ORDER BY 
-  Count(*) DESC,
+  OrderCount DESC,
   Orders.CustomerID DESC;
 ```
 
@@ -31,7 +31,7 @@ ORDER BY
 SELECT CustomerID, COUNT(*) AS OrderCount
 FROM Orders 
 GROUP BY CustomerID
-HAVING COUNT(*) = 
+HAVING OrderCount = 
 (
   -- CustomerIDごとの注文数の最大値を取得
   SELECT MAX(OrderCount2) 
@@ -56,7 +56,7 @@ HAVING COUNT(*) =
 SELECT OrderID, COUNT(OrderID) AS OrderDetailCount 
 FROM OrderDetails 
 GROUP BY OrderID 
-HAVING COUNT(OrderID) = 
+HAVING OrderDetailCount = 
 (
   -- 最大値を取得
   SELECT MAX(OrderDetailCount2) 
@@ -78,7 +78,7 @@ SELECT ShipperID, COUNT(ShipperID) AS ShippingCount
 FROM Orders 
 GROUP BY ShipperID 
 ORDER BY 
-  COUNT(ShipperID) DESC,  
+  ShippingCount DESC,  
   ShipperID ASC;
 ```
 
