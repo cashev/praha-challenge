@@ -56,51 +56,36 @@ WHERE movieid = 11768
 ``` sql
 SELECT actor.name
 FROM casting 
-LEFT OUTER JOIN actor
+INNER JOIN movie 
+  ON casting.movieid = movie.id 
+INNER JOIN actor
   ON casting.actorid = actor.id 
-WHERE movieid IN 
-(
-  SELECT id 
-  FROM movie 
-  WHERE title = 'Alien'
-)
+WHERE movie.title = 'Alien'
 ```
 
 8
 
 ``` sql
 SELECT movie.title 
-FROM movie 
-WHERE id IN 
-(
-  SELECT movieid 
-  FROM casting 
-  WHERE actorid IN
-  (
-    SELECT id 
-    FROM actor 
-    WHERE name = 'Harrison Ford'
-  )
-)
+FROM casting 
+INNER JOIN movie 
+  ON casting.movieid = movie.id
+INNER JOIN actor 
+  ON casting.actorid = actor.id
+WHERE name = 'Harrison Ford'
 ```
 
 9
 
 ``` sql
 SELECT movie.title 
-FROM movie 
-WHERE id IN 
-(
-  SELECT movieid 
-  FROM casting 
-  WHERE actorid IN
-  (
-    SELECT id 
-    FROM actor 
-    WHERE name = 'Harrison Ford'
-  )
+FROM casting 
+INNER JOIN movie 
+  ON casting.movieid = movie.id
+INNER JOIN actor 
+  ON casting.actorid = actor.id
+WHERE name = 'Harrison Ford'
   AND ord <> 1
-)
 ```
 
 10
@@ -119,9 +104,12 @@ WHERE movie.yr = '1962'
 11
 
 ``` sql
-SELECT yr,COUNT(title) FROM
-  movie JOIN casting ON movie.id=movieid
-        JOIN actor   ON actorid=actor.id
+SELECT yr,COUNT(title) 
+FROM movie 
+JOIN casting 
+  ON movie.id=movieid
+JOIN actor 
+  ON actorid=actor.id
 WHERE name='Rock Hudson'
 GROUP BY yr
 HAVING COUNT(title) > 2
@@ -136,12 +124,9 @@ INNER JOIN movie ON casting.movieid = movie.id
 INNER JOIN actor ON casting.actorid = actor.id 
 WHERE movieid IN
 (
-  SELECT movieid FROM casting
-  WHERE actorid IN 
-  (
-    SELECT id FROM actor
-    WHERE name='Julie Andrews'
-  )
+  SELECT movieid FROM casting 
+  INNER JOIN actor ON casting.actorid = actor.id 
+  WHERE name='Julie Andrews'
 )
 AND ord = 1
 ```
@@ -182,9 +167,7 @@ WHERE actor.name <> 'Art Garfunkel'
 AND casting.movieid IN 
 (
   SELECT movieid FROM casting 
-  WHERE actorid in 
-  (
-    SELECT id FROM actor WHERE name = 'Art Garfunkel'
-  )
+  INNER JOIN actor ON casting.actorid = actor.id
+  WHERE name = 'Art Garfunkel'
 )
 ```
