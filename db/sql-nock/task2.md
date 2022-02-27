@@ -29,9 +29,12 @@ SELECT, INSERT, UPDATE, DELETE など
 #### DCL
 
 Data Control Language  
-データベース
+データベースのデータを制御するクエリ  
 
 GRANT, REVOKE など
+
+- GRANT...権限の付与  
+- REVOKE...権限の剥奪
 
 #### TCL
 
@@ -47,3 +50,5 @@ COMMIT, ROLLBACK, SAVEPOINT, SET TRANSACTION など
 [グループ化したデータを取得する条件を設定する(HAVING句)](https://www.dbonline.jp/mysql/select/index10.html)
 
 [MySQL What is DDL, DML and DCL?](https://www.w3schools.in/mysql/ddl-dml-dcl/)
+
+[SQL命令の種類（DML・DDL・TCL・DCL）](https://johobase.com/sql-instruction-type/)
