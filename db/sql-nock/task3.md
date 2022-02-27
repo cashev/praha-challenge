@@ -18,7 +18,7 @@ FROM Customers;
 
 2
 
-GROUP BY aで指定したカラムにNULLがある場合、  
+COUNTで指定したカラムにNULLがある場合、  
 COUNT()はいくつで出力されるでしょうか。
 
 ``` sql
@@ -35,7 +35,7 @@ GROUP BY EmployeeID;
 
 3
 
-LEN()にNULLを指定したとき何が出力されるでしょうか
+LENGTH()にNULLを指定したとき何が出力されるでしょうか
 
 ``` sql
 SELECT LENGTH(NULL);
