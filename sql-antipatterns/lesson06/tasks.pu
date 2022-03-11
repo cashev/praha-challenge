@@ -1,0 +1,31 @@
+・課題1
+  ・「中退」など新規ステータスが追加された場合、制約の修正が必要
+
+・課題2
+@startuml
+
+entity "Student" as student {
+    id: varchar [PK]
+    --
+    name: varchar
+    status_id: varchar [FK]
+}
+
+entity "Status" as status {
+    id: varchar [PK]
+    --
+    name: varchar
+}
+
+student }o-ri-|| status
+
+@enduml
+
+・課題3
+  ・社員を管理するテーブルで、
+    「在職」「退職」「休職」などのステータスがある場合
+  ・性別を「男」「女」「不明」などを設定する
+
+参考
+SQLアンチパターン
+10章 サーティワンフレーバー
