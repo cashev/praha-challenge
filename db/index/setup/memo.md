@@ -17,23 +17,16 @@ multipass shell mysql-employees
 必要なものをインストール、ダウンロード
 
 ``` sh
-sudo apt-get install -y mysql-server wget unzip
-mkdir work && cd work
-wget https://github.com/datacharmer/test_db/archive/master.zip -O test_db-master.zip
+sudo apt update && sudo apt install -y mysql-server wget unzip && \
+mkdir work && cd work && \
+wget https://github.com/datacharmer/test_db/archive/master.zip -O test_db-master.zip && \
 unzip test_db-master.zip
-```
-
-設定  
-password: college
-
-``` sh
-sudo mysql_secure_installation
 ```
 
 データ流し込み
 
 ``` sh
-cd test_db-master
+cd test_db-master && \
 sudo mysql -t < employees.sql
 ```
 
