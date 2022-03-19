@@ -133,16 +133,14 @@ ORDER BY
 
 ``` sql
 ALTER TABLE Employees 
-ADD COLUMN Junior BOOL;
+ADD COLUMN Junior BOOL 
+DEFAULT FALSE NOT NULL;
 ```
 
 ``` sql
 UPDATE Employees 
-SET Junior = 
-CASE 
-  WHEN strftime('%Y', BirthDate) > '1960' THEN True 
-  ELSE False 
-END;
+SET Junior = TRUE
+WHERE strftime('%Y', BirthDate) > '1960';
 ```
 
 ### Shipperにlong_relationカラム（boolean）を追加
@@ -150,21 +148,19 @@ END;
 ``` sql
 ALTER TABLE Shippers 
 ADD COLUMN long_relation BOOL 
-DEFAULT False;
+DEFAULT FALSE NOT NULL;
 ```
 
 ``` sql
 UPDATE Shippers 
-SET long_relation = True 
+SET long_relation = TRUE 
 WHERE 
   ShipperID IN 
   (
     -- 対象のShipperIDを取得
-    SELECT Orders.ShipperID 
+    SELECT ShipperID 
     FROM Orders 
-    LEFT OUTER JOIN Shippers 
-      ON Orders.ShipperID = Shippers.ShipperID 
-    GROUP BY Orders.ShipperID 
+    GROUP BY ShipperID 
     HAVING COUNT(*) >= 70
   );
 ```
