@@ -99,9 +99,9 @@ SELECT
   ROUND(SUM(OrderDetails.Quantity * Products.Price)) AS sales, 
   Customers.Country 
 FROM OrderDetails 
-LEFT OUTER JOIN Orders 
+INNER JOIN Orders 
   ON OrderDetails.OrderID = Orders.OrderID 
-LEFT OUTER JOIN Products 
+INNER JOIN Products 
   ON OrderDetails.ProductID = Products.ProductID 
 INNER JOIN Customers 
   ON Orders.CustomerID = Customers.CustomerID 
@@ -117,9 +117,9 @@ SELECT
   strftime('%Y', Orders.OrderDate) AS OrderYear,
   Customers.Country 
 FROM OrderDetails 
-LEFT OUTER JOIN Orders 
+INNER JOIN Orders 
   ON OrderDetails.OrderID = Orders.OrderID 
-LEFT OUTER JOIN Products 
+INNER JOIN Products 
   ON OrderDetails.ProductID = Products.ProductID 
 INNER JOIN Customers 
   ON Orders.CustomerID = Customers.CustomerID 
