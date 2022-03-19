@@ -24,6 +24,12 @@ ORDER BY
   Orders.CustomerID DESC;
 ```
 
+96年に最もよく注文したCustomer  
+
+- 20
+- 63
+- 65
+
 ### 最もよく注文したCustomer
 
 ``` sql
@@ -44,6 +50,10 @@ HAVING OrderCount =
   )
 );
 ```
+
+最もよく注文したCustomer
+
+- 20
 
 #### 参考
 
