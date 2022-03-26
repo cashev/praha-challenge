@@ -15,14 +15,25 @@ sudo echo \
   $(lsb_release -cs) stable test" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
 
-# install docker compose
-sudo mkdir -p ~/.docker/cli-plugins/
-sudo curl -SL https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-linux-aarch64 -o ~/.docker/cli-plugins/docker-compose
-sudo chmod +x ~/.docker/cli-plugins/docker-compose
-sudo chown $USER /var/run/docker.sock
-
 # download Employees Data
 sudo apt update && sudo apt install -y wget unzip
-mkdir ~/work && cd work
+mkdir ~/work && cd ~/work
 sudo wget https://github.com/datacharmer/test_db/archive/master.zip -O test_db-master.zip
 sudo unzip test_db-master.zip
+
+# create docker-entrypoint-initdb.sh
+mkdir ~/work/init
+touch ~/work/init/docker-entrypoint-initdb.sh
+echo "cd test_db-master" >> ~/work/init/docker-entrypoint-initdb.sh
+echo "mysql -uroot -ppassword -t < /test_db-master/employees.sql" >> ~/work/init/docker-entrypoint-initdb.sh
+
+# docker run
+cd ~/work
+sudo docker run -d \
+  --name mysql-employees \
+  -p 3306:3306 \
+  -e MYSQL_ROOT_PASSWORD=password \
+  -v $PWD/data:/var/lib/mysql \
+  -v $PWD/test_db-master:/test_db-master \
+  -v $PWD/init:/docker-entrypoint-initdb.d \
+  mysql/mysql-server:latest
