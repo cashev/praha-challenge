@@ -31,6 +31,18 @@
 SQL文に出てくる全てのカラムがインデックスに含まれている場合、
 テーブルアクセスせず、インデックスのみスキャンしクエリ結果を取得すること
 
+### autoincrementのid
+
+#### メリット
+
+GitHubのissueが連番になるため人間に見やすく推測しやすい。  
+insert, update時にB+treeのリーフページがキャッシュにヒットしやすいため更新速度が速い。  
+
+#### デメリット
+
+ユーザIDをauto incrementしてURLがtest.com/users/42となっている場合、  
+現行のユーザ数など推測可能になる。  
+
 ### 参考
 
 インデックス  
@@ -49,3 +61,7 @@ slow query log
 
 カバリングインデックス  
 <https://use-the-index-luke.com/ja/sql/clustering/index-only-scan-covering-index>
+
+autoincrement  
+<https://zenn.dev/dowanna6/articles/3c84e3818891c3>  
+<https://techblog.raccoon.ne.jp/archives/1627262796.html>  
