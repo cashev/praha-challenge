@@ -290,11 +290,11 @@ sysスキーマについて
 <https://yoku0825.blogspot.com/2015/10/mysqlsys.html>
 <https://downloads.mysql.com/presentations/20151208_02_MySQL_Tuning_for_Beginners.pdf>
 
-index
+index  
 <https://www.dbonline.jp/mysql/index/index1.html>
 
-EXPLAIN
+EXPLAIN  
 <http://nippondanji.blogspot.com/2009/03/mysqlexplain.html>
 
-Buffer Pool
+Buffer Pool  
 <https://atsuizo.hatenadiary.jp/entry/2016/12/06/190624>
