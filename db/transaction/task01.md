@@ -118,4 +118,3 @@ Dirty read, Fuzzy read, Phantom readを防ぐ。
 <https://ja.wikipedia.org/wiki/食事する哲学者の問題>  
 <https://engineering.mercari.com/blog/entry/2017-12-18-deadlock/>  
 <https://tech.andpad.co.jp/entry/2020/07/13/123720>  
-
