@@ -1,6 +1,7 @@
 import axios from "axios";
 import { NameApiService } from "../nameApiService";
 
+// memo: jest.mock(モジュール名)を利用するとモジュールに含まれる各関数にはすでにjest.fn()が設定される
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
