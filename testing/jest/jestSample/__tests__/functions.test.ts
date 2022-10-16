@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   asyncSumOfArray,
   sumOfArray,
@@ -6,9 +5,6 @@ import {
   getFirstNameThrowIfLong,
 } from "../functions";
 import { NameApiService } from "../nameApiService";
-
-jest.mock("axios");
-const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe("SumOfArray関数", () => {
   test("要素が1つの配列を渡すと、その値が返る", () => {
@@ -38,6 +34,7 @@ describe("asyncSumOfArray関数", () => {
   });
 });
 
+// memo: jest.fn()は新しいモック関数を作る関数
 describe("asyncSumOfArraySometimesZero関数", () => {
   test("データベースに保存できた場合、配列の合計が返る", async () => {
     const databaseMock = { save: jest.fn() };
@@ -59,22 +56,21 @@ describe("asyncSumOfArraySometimesZero関数", () => {
   });
 });
 
+// memo: jest.spyOnは既存のオブジェクトの特定の関数をモック化する関数
 describe("getFirstNameThrowIfLong関数", () => {
   test("取得した名前が引数の数値以下の文字数の場合、その名前が返る", async () => {
-    const firstName = { first_name: "Ali" };
-    const resp = { data: firstName };
-    mockedAxios.get.mockResolvedValue(resp);
-    await expect(
-      getFirstNameThrowIfLong(10, new NameApiService())
-    ).resolves.toBe("Ali");
+    const nameApiServiceMock = new NameApiService();
+    jest.spyOn(nameApiServiceMock, "getFirstName").mockResolvedValue("Ali");
+    await expect(getFirstNameThrowIfLong(10, nameApiServiceMock)).resolves.toBe(
+      "Ali"
+    );
   });
 
   test("取得した名前が引数の数値より大きい場合、例外を投げる", async () => {
-    const firstName = { first_name: "Bob" };
-    const resp = { data: firstName };
-    mockedAxios.get.mockResolvedValue(resp);
+    const nameApiServiceMock = new NameApiService();
+    jest.spyOn(nameApiServiceMock, "getFirstName").mockResolvedValue("Bob");
     await expect(
-      getFirstNameThrowIfLong(2, new NameApiService())
+      getFirstNameThrowIfLong(2, nameApiServiceMock)
     ).rejects.toThrow("first_name too long");
   });
 });
