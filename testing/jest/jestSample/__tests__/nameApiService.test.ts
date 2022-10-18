@@ -17,11 +17,15 @@ describe("getFirstName関数", () => {
     const firstName = { first_name: "Erwin" };
     const resp = { data: firstName };
     mockedAxios.get.mockResolvedValue(resp);
-    await expect(new NameApiService().getFirstName()).rejects.toThrow("firstName is too long!");
+    await expect(new NameApiService().getFirstName()).rejects.toThrow(
+      "firstName is too long!"
+    );
   });
 
   test("firstNameの取得に失敗した場合、例外を投げる", async () => {
-    mockedAxios.get.mockImplementation(() => {throw Error()});
+    mockedAxios.get.mockImplementation(() => {
+      throw Error();
+    });
     await expect(new NameApiService().getFirstName()).rejects.toThrow();
   });
 });

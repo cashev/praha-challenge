@@ -76,7 +76,9 @@ describe("getFirstNameThrowIfLong関数", () => {
 
   test("firstNameの取得に失敗した場合、例外を投げる", async () => {
     const nameApiServiceMock = new NameApiService();
-    jest.spyOn(nameApiServiceMock, "getFirstName").mockImplementation(() => {throw Error()});
+    jest.spyOn(nameApiServiceMock, "getFirstName").mockImplementation(() => {
+      throw Error();
+    });
     await expect(
       getFirstNameThrowIfLong(2, nameApiServiceMock)
     ).rejects.toThrow();
