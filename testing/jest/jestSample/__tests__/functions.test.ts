@@ -58,7 +58,7 @@ describe("asyncSumOfArraySometimesZero関数", () => {
 
 // memo: jest.spyOnは既存のオブジェクトの特定の関数をモック化する関数
 describe("getFirstNameThrowIfLong関数", () => {
-  test("取得した名前が引数の数値以下の文字数の場合、その名前が返る", async () => {
+  test("取得したfirstNameが引数の数値以下の文字数の場合、その名前が返る", async () => {
     const nameApiServiceMock = new NameApiService();
     jest.spyOn(nameApiServiceMock, "getFirstName").mockResolvedValue("Ali");
     await expect(getFirstNameThrowIfLong(10, nameApiServiceMock)).resolves.toBe(
@@ -66,11 +66,19 @@ describe("getFirstNameThrowIfLong関数", () => {
     );
   });
 
-  test("取得した名前が引数の数値より大きい場合、例外を投げる", async () => {
+  test("取得したfirstNameが引数の数値より大きい場合、例外を投げる", async () => {
     const nameApiServiceMock = new NameApiService();
     jest.spyOn(nameApiServiceMock, "getFirstName").mockResolvedValue("Bob");
     await expect(
       getFirstNameThrowIfLong(2, nameApiServiceMock)
     ).rejects.toThrow("first_name too long");
+  });
+
+  test("firstNameの取得に失敗した場合、例外を投げる", async () => {
+    const nameApiServiceMock = new NameApiService();
+    jest.spyOn(nameApiServiceMock, "getFirstName").mockImplementation(() => {throw Error()});
+    await expect(
+      getFirstNameThrowIfLong(2, nameApiServiceMock)
+    ).rejects.toThrow();
   });
 });
