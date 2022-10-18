@@ -15,8 +15,8 @@ describe("SumOfArray関数", () => {
     expect(sumOfArray([1, 2, 3])).toBe(6);
   });
 
-  test("空の配列を渡すと、例外を投げる", () => {
-    expect(() => sumOfArray([])).toThrow();
+  test("空の配列を渡すと、0が返る", () => {
+    expect(sumOfArray([])).toBe(0);
   });
 });
 
@@ -26,11 +26,11 @@ describe("asyncSumOfArray関数", () => {
   });
 
   test("要素が複数の配列を渡すと、その合計が返る", async () => {
-    await expect(sumOfArray([1, 2, 3])).toBe(6);
+    await expect(asyncSumOfArray([1, 2, 3])).resolves.toBe(6);
   });
 
-  test("空の配列を渡すと、例外となる", async () => {
-    await expect(() => sumOfArray([])).toThrow();
+  test("空の配列を渡すと、0が返る", async () => {
+    await expect(asyncSumOfArray([])).resolves.toBe(0);
   });
 });
 
