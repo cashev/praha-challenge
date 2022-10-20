@@ -30,8 +30,14 @@ export const calculateAge = (birthDate: Date): number => {
 
 ### jestに関するクイズ
 
-1 toEqual()とtoStrictEqual()の違いはなんでしょうか
+#### クイズ01
 
-2 外部APIへHTTPリクエスト送り、そのレスポンスを処理する関数をmockやspyOn使ってテストしたが、実際に動かすとエラーとなる場合どんな原因が考えられるでしょうか
+toEqual()とtoStrictEqual()の違いはなんでしょうか
 
-3 testとitの違いは何でしょうか
+#### クイズ02
+
+外部APIへHTTPリクエスト送り、そのレスポンスを処理する関数をmockやspyOn使ってテストしたが、実際に動かすとエラーとなる場合どんな原因が考えられるでしょうか
+
+#### クイズ03
+
+testとitの違いは何でしょうか
