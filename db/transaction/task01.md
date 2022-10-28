@@ -98,6 +98,11 @@ Dirty read, Fuzzy read, Phantom readを防ぐ。
 
 別トランザクションからの更新、参照を許可しない。  
 
+### SELECT FOR UPDATE
+
+対象行に対して占有ロックを取得する。  
+LOCK IN SHARE MODEは共有ロック  
+
 ### fuzzy-read, phantom-readの違い  
 
 #### fuzzy-read  
