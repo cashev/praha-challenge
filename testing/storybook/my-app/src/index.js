@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 
 function Square(props) {
@@ -121,8 +121,14 @@ class Game extends React.Component {
 
 // ========================================
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Game />);
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(<Game />);
+ReactDOM.render(
+  <React.StrictMode>
+    <Game />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
 
 function calculateWinner(squares) {
   const lines = [
