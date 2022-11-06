@@ -23,3 +23,8 @@ export const Circle = Template.bind({});
 Circle.args = {
     value: 'O',
 };
+
+export const Triangle = Template.bind({});
+Triangle.args = {
+    value: '△',
+};

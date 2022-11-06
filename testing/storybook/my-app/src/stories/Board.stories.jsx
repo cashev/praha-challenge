@@ -38,3 +38,8 @@ export const FillWithCircle = Template.bind({});
 FillWithCircle.args = {
     squares: Array(9).fill('O'),
 };
+
+export const FillWithTriangle = Template.bind({});
+FillWithTriangle.args = {
+    squares: Array(9).fill('△'),
+};
