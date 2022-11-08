@@ -14,7 +14,7 @@
 
 ### 02
 
-Template.bind({}) とは何でしょうか。
+xxx.stories.jsx に使われるTemplate.bind({}) の.bind({})とは何でしょうか。
 
 <details><summary>Answer</summary>
 
