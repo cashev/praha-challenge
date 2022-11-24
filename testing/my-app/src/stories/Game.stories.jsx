@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Game } from '../index';
+import Game from '../Game';
 
 export default {
     title: 'Game',

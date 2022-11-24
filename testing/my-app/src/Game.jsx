@@ -1,49 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Board from './Board';
 import './index.css';
 
-export function Square(props) {
-  return (
-    <button className="square" onClick={props.onClick}>
-      {props.value}
-    </button>
-  );
-}
-
-export class Board extends React.Component {
-  renderSquare(i) {
-    return (
-      <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-      />
-    );
-  }
-
-  render() {
-    return (
-      <div>        
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
-    );
-  }
-}
-
-export class Game extends React.Component {
+export default class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -99,7 +58,7 @@ export class Game extends React.Component {
     if (winner) {
       status = 'Winner: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = '次のプレイヤー: ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
@@ -118,17 +77,6 @@ export class Game extends React.Component {
     );
   }
 }
-
-// ========================================
-
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(<Game />);
-ReactDOM.render(
-  <React.StrictMode>
-    <Game />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
 
 function calculateWinner(squares) {
   const lines = [
