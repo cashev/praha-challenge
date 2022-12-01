@@ -3,32 +3,15 @@ import Board from './Board';
 import './index.css';
 
 export default class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      history: [{
-        squares: Array(9).fill(null),
-      }],
-      stepNumber: 0,
-      xIsNext: true,
-    };
-  }
-
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const history = this.props.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      history: history.concat([{
-        squares: squares,
-      }]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-    });
+    this.props.setState(history.concat([{squares: squares}]));
   }
 
   jumpTo(step) {
@@ -39,8 +22,8 @@ export default class Game extends React.Component {
   }
 
   render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    const history = this.props.history;
+    const current = history[this.props.stepNumber];
     const winner = calculateWinner(current.squares);
     const isDraw = !current.squares.includes(null);
 
@@ -61,7 +44,7 @@ export default class Game extends React.Component {
     } else if (isDraw) {
       status = 'Draw!'
     } else {
-      status = '次のプレイヤー: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = '次のプレイヤー: ' + (this.props.xIsNext ? 'X' : 'O');
     }
 
     return (
