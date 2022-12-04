@@ -10,12 +10,18 @@ export default class Game extends React.Component {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.props.setState(history.concat([{squares: squares}]));
+    squares[i] = this.props.xIsNext ? 'X' : 'O';
+    this.props.updateState({
+      history: history.concat([{
+        squares: squares,
+      }]),
+      stepNumber: history.length,
+      xIsNext: !this.props.xIsNext,
+    });
   }
 
   jumpTo(step) {
-    this.setState({
+    this.props.updateState({
       stepNumber: step,
       xIsNext: (step % 2) === 0,
     });

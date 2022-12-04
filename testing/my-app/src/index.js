@@ -15,12 +15,8 @@ export default class Top extends React.Component {
     };
   }
 
-  setState(history) {
-    this.setState({
-      history: history,
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-    });
+  updateState(value) {
+    this.setState(value);
   }
 
   render() {
@@ -29,7 +25,7 @@ export default class Top extends React.Component {
         history={this.state.history}
         stepNumber={this.state.stepNumber}
         xIsNext={this.state.xIsNext}
-        setState={(history) => this.setState(history)}
+        updateState={(value) => this.updateState(value)}
       />
     )
   }
