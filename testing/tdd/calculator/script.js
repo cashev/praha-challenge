@@ -10,4 +10,8 @@ function subtract(...args) {
     return args.reduce((a, b) => a - b);
 }
 
-module.exports = {add, multiply, subtract}
+function divide(...args) {
+    return args.reduce((a, b) => a / b);
+}
+
+module.exports = {add, multiply, subtract, divide}

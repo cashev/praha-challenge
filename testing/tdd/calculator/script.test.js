@@ -37,3 +37,7 @@ test('multiplyに2と3を渡すと6が返る', () => {
 test('subtractに3と2を渡すと1が返る', () => {
     expect(script.subtract(3, 2)).toBe(1);
 });
+
+test('divideに6と3を渡すと2が返る', () => {
+    expect(script.divide(6, 3)).toBe(2);
+});
