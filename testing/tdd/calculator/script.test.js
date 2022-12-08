@@ -29,3 +29,7 @@ const script = require('./script')
 test('addに1と2を渡すと3が返る', () => {
     expect(script.add(1, 2)).toBe(3);
 });
+
+test('multiplyに2と3を渡すと6が返る', () => {
+    expect(script.multiply(2, 3)).toBe(6);
+});
