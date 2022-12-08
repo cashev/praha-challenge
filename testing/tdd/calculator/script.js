@@ -1,5 +1,9 @@
 function add(...args) {
-    return args.reduce((a, b) => a + b);
+    const result = args.reduce((a, b) => a + b);
+    if (result > 1000) {
+        return 'too big';
+    }
+    return result
 }
 
 function multiply(...args) {

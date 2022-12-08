@@ -36,3 +36,7 @@ test('subtractに3と2を渡すと1が返る', () => {
 test('divideに6と3を渡すと2が返る', () => {
     expect(script.divide(6, 3)).toBe(2);
 });
+
+test('addに1と1000を渡すと"too big"と返る', () => {
+    expect(script.add(1, 1000)).toBe('too big');
+});
