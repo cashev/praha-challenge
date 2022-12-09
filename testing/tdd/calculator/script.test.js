@@ -1,6 +1,5 @@
 /*
 TODO
-- multiplyにaと1を渡すとエラーが返る
 - subtractにaを渡すとエラーが返る
 - divideにaとbを渡すとエラーが返る
  */
@@ -92,4 +91,8 @@ test('divideに31個の引数を渡すとエラーが返る', () => {
 
 test('addに1とaを渡すとエラーが返る', () => {
     expect(() => script.add(1, 'a')).toThrow(new Error('不正な引数です'));
+});
+
+test('multiplyにaと1を渡すとエラーが返る', () => {
+    expect(() => script.multiply('a', 1)).toThrow(new Error('不正な引数です'));
 });
