@@ -15,7 +15,11 @@ function multiply(...args) {
 }
 
 function subtract(...args) {
-    return args.reduce((a, b) => a - b);
+    const result = args.reduce((a, b) => a - b);
+    if (result < 0) {
+        return 'negative number';
+    }
+    return result;
 }
 
 function divide(...args) {

@@ -1,6 +1,5 @@
 /*
 TODO
-- subtractに0と1を渡すと"negative number"と返る
 - divideに10と3を渡すと3.33が返る
 - divideに1と8を渡すと0.13が返る
 
@@ -41,4 +40,8 @@ test('addに1と1000を渡すと"too big"と返る', () => {
 
 test('multiplyに1と1001を渡すと"big big number"と返る', () => {
     expect(script.multiply(1, 1001)).toBe('big big number');
+});
+
+test('subtractに0と1を渡すと"negative number"と返る', () => {
+    expect(script.subtract(0, 1)).toBe('negative number');
 });
