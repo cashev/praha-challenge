@@ -1,6 +1,5 @@
 /*
 TODO
-- addに1と1000を渡すと"too big"と返る
 - multiplyに1と1001を渡すと"big big number"と返る
 - subtractに0と1を渡すと"negative number"と返る
 - divideに10と3を渡すと3.33が返る
