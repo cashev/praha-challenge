@@ -7,7 +7,11 @@ function add(...args) {
 }
 
 function multiply(...args) {
-    return args.reduce((a, b) => a * b);
+    const result = args.reduce((a, b) => a * b);
+    if (result > 1000) {
+        return 'big big number';
+    }
+    return result;
 }
 
 function subtract(...args) {
