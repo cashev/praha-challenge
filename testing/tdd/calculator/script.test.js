@@ -1,7 +1,5 @@
 /*
 TODO
-- subtractに30個の引数を渡すとエラーなく結果が返る
-- subtractに31個の引数を渡すとエラーが返る
 - divideに30個の引数を渡すとエラーなく結果が返る
 - divideに31個の引数を渡すとエラーが返る
 - addに1とaを渡すとエラーが返る
@@ -70,3 +68,15 @@ test('multiplyに31個の引数を渡すとエラーが返る', () => {
     args.fill(2);
     expect(() => script.multiply(...args)).toThrow(new Error('引数が多すぎます'));
 });
+
+test('subtractに30個の引数を渡すとエラーなく結果が返る', () => {
+    const args = new Array(30);
+    args.fill(0);
+    expect(script.subtract(...args)).toBe(0);
+});
+
+test('subtractに31個の引数を渡すとエラーが返る', () => {
+    const args = new Array(31);
+    args.fill(0);
+    expect(() => script.subtract(...args)).toThrow(new Error('引数が多すぎます'));
+})

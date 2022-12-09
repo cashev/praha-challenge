@@ -21,6 +21,9 @@ function multiply(...args) {
 }
 
 function subtract(...args) {
+    if (args.length > 30) {
+        throw new Error('引数が多すぎます');
+    }
     const result = args.reduce((a, b) => a - b);
     if (result < 0) {
         return 'negative number';
