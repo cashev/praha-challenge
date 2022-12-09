@@ -32,6 +32,9 @@ function subtract(...args) {
 }
 
 function divide(...args) {
+    if (args.length > 30) {
+        throw new Error('引数が多すぎます');
+    }
     const result = args.reduce((a, b) => a / b);
     return Math.round(result * 100) / 100
 }
