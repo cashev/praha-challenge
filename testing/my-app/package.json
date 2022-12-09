@@ -54,6 +54,7 @@
     "@storybook/addon-interactions": "^6.4.2",
     "@storybook/addon-links": "^6.4.2",
     "@storybook/addon-storyshots": "^6.5.13",
+    "@storybook/addon-storyshots-puppeteer": "^6.5.13",
     "@storybook/builder-webpack5": "^6.4.2",
     "@storybook/manager-webpack5": "^6.4.2",
     "@storybook/node-logger": "^6.4.2",
@@ -61,7 +62,9 @@
     "@storybook/react": "^6.4.2",
     "@storybook/testing-library": "^0.0.13",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "playwright": "^1.28.0",
     "prop-types": "^15.8.1",
+    "puppeteer": "^3.3.0",
     "webpack": "^5.74.0"
   }
 }
