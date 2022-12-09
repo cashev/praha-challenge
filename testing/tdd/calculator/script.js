@@ -44,6 +44,9 @@ function divide(...args) {
     if (args.length > 30) {
         throw new Error('引数が多すぎます');
     }
+    if (args.some(isNaN)) {
+        throw new Error('不正な引数です');
+    }
     const result = args.reduce((a, b) => a / b);
     return Math.round(result * 100) / 100
 }

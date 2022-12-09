@@ -1,7 +1,3 @@
-/*
-TODO
-- divideにaとbを渡すとエラーが返る
- */
 const script = require('./script')
 
 test('addに1と2を渡すと3が返る', () => {
@@ -98,4 +94,8 @@ test('multiplyにaと1を渡すとエラーが返る', () => {
 
 test('subtractにaを渡すとエラーが返る', () => {
     expect(() => script.subtract('a')).toThrow(new Error('不正な引数です'));
+});
+
+test('divideにaとbを渡すとエラーが返る', () => {
+    expect(() => script.divide('a', 'b')).toThrow(new Error('不正な引数です'));
 });
