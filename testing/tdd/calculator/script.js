@@ -23,7 +23,8 @@ function subtract(...args) {
 }
 
 function divide(...args) {
-    return args.reduce((a, b) => a / b);
+    const result = args.reduce((a, b) => a / b);
+    return Math.round(result * 100) / 100
 }
 
 module.exports = {add, multiply, subtract, divide}

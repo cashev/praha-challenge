@@ -1,8 +1,5 @@
 /*
 TODO
-- divideに10と3を渡すと3.33が返る
-- divideに1と8を渡すと0.13が返る
-
 - addに30個の引数を渡すとエラーなく結果が返る
 - addに31個の引数を渡すとエラーが返る
 - multiplyに30個の引数を渡すとエラーなく結果が返る
@@ -44,4 +41,12 @@ test('multiplyに1と1001を渡すと"big big number"と返る', () => {
 
 test('subtractに0と1を渡すと"negative number"と返る', () => {
     expect(script.subtract(0, 1)).toBe('negative number');
+});
+
+test('divideに10と3を渡すと3.33が返る', () => {
+    expect(script.divide(10, 3)).toBe(3.33);
+});
+
+test('divideに1と8を渡すと0.13が返る', () => {
+    expect(script.divide(1, 8)).toBe(0.13);
 });
