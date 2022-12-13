@@ -70,30 +70,16 @@ if (reader instanceof AbcReader) {
 プログラムの重要な処理が、あまり重要ではない処理に依存しているとき  
 密結合なプログラムをテストできるような疎結合なプログラムに変更するとき
 
-## デメテルの法則とは
-
-呼び出し側がオブジェクトの内部(フィールドやメソッドで取得した別クラス)を意識させないこと  
-`a.b.method()`, `a.findB().methodB()`ではなく`a.method()`として、aとそのメソッドだけに意識させる  
-知識最少の原則とも言う  
+## デメトルの法則とは
 
 ### メリット
 
-関心の分離を満たせる  
-呼び出す側は、内部でどんな処理を行なっているか意識せずに済む  
-問題が起こったときaのメソッドを修正するだけで済み、呼び出す側の修正は不要  
-tell, don't askとなり、コードの複雑化を防ぐ  
-
 ### コードの保守性に対して効果が無いこと
 
-呼び出し側がgetter()でuseId, productIdを取得し、それらを使った処理を書けてしまうため、  
-Purchaseクラスの関心ごとが呼び出し側にも点在してしまう  
-またsetter()がある場合、あるタイミングでuseId, productIdが変更できてしまい意図しないバグが生まれやすい  
-(Purchaseの場合、購入したuser, productがいつの間にか変わっているなど)
+### デメテルの法則を守ることにはどのような意味/効果
 
 ## 参考
 
 <https://ja.wikipedia.org/wiki/SOLID>
 <https://ja.wikipedia.org/wiki/%E3%83%AA%E3%82%B9%E3%82%B3%E3%83%95%E3%81%AE%E7%BD%AE%E6%8F%9B%E5%8E%9F%E5%89%87>
 <https://gihyo.jp/dp/ebook/2022/978-4-297-13235-4>
-<https://ja.wikipedia.org/wiki/%E3%83%87%E3%83%A1%E3%83%86%E3%83%AB%E3%81%AE%E6%B3%95%E5%89%87>
-<https://martinfowler.com/bliki/TellDontAsk.html>
