@@ -2,8 +2,7 @@
 
 ## 問題点
 
-Personのname, starWorkingAt、 Companyのpeopleが外部から変更可能になっているため  
-意図しない上書きが起こりうる
+Personのname, starWorkingAt、 Companyのpeopleが外部から変更可能になっているため意図しない上書きが起こりうる  
 
 ## 解決策
 

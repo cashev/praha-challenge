@@ -92,8 +92,8 @@ Purchaseクラスの関心ごとが呼び出し側にも点在してしまう
 
 ## 参考
 
-<https://ja.wikipedia.org/wiki/SOLID>
-<https://ja.wikipedia.org/wiki/%E3%83%AA%E3%82%B9%E3%82%B3%E3%83%95%E3%81%AE%E7%BD%AE%E6%8F%9B%E5%8E%9F%E5%89%87>
-<https://gihyo.jp/dp/ebook/2022/978-4-297-13235-4>
-<https://ja.wikipedia.org/wiki/%E3%83%87%E3%83%A1%E3%83%86%E3%83%AB%E3%81%AE%E6%B3%95%E5%89%87>
-<https://martinfowler.com/bliki/TellDontAsk.html>
+<https://ja.wikipedia.org/wiki/SOLID>  
+<https://ja.wikipedia.org/wiki/%E3%83%AA%E3%82%B9%E3%82%B3%E3%83%95%E3%81%AE%E7%BD%AE%E6%8F%9B%E5%8E%9F%E5%89%87>  
+<https://gihyo.jp/dp/ebook/2022/978-4-297-13235-4>  
+<https://ja.wikipedia.org/wiki/%E3%83%87%E3%83%A1%E3%83%86%E3%83%AB%E3%81%AE%E6%B3%95%E5%89%87>  
+<https://martinfowler.com/bliki/TellDontAsk.html>  
