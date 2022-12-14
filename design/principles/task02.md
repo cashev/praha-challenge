@@ -7,5 +7,5 @@ PurchaseServiceのpurchaseメソッドにチェック処理と購入処理が混
 
 ## 解決策
 
-PurchaseServiceにvalidateメソッドを追加し、そこでチェック処理を行う  
-PurchaseServiceが実際のチェック処理はコンストラクタで受け取る  
+製品ごとに購入ルールがあると想定し、購入ルールを抽象化  
+PurchaseServiceクラスからチェック処理をなくし、基本的な処理の流れだけを記載する  

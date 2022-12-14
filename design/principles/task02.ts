@@ -12,19 +12,21 @@ interface PaymentRecordRepo {
 }
 
 interface PurchaseRule {
-    validate: () => [ok: boolean, msg: string]
+    validate: (userId: string, productId: string) => [ok: boolean, msg: string]
+}
+
+interface PurchaseRuleRepo {
+    getPurchaseRuleBy: (productId: string) => PurchaseRule
 }
 
 class PurchaseOnlyOnce implements PurchaseRule {
     public constructor(
-        private userId: string,
-        private productId: string,
         private paymentRecordRepo: PaymentRecordRepo
     ){}
 
-    validate(): [ok: boolean, msg: string] {
-        const allPurchases = this.paymentRecordRepo.getPurchasesBy(this.userId)
-        const pastPurchase = allPurchases.find((p) => p.productId === this.productId && p.transaction.succeeded)
+    validate(userId: string, productId: string): [ok: boolean, msg: string] {
+        const allPurchases = this.paymentRecordRepo.getPurchasesBy(userId)
+        const pastPurchase = allPurchases.find((p) => p.productId === productId && p.transaction.succeeded)
         if (pastPurchase) {
             return [false, 'この商品はおひとりさま一品限定です！']
         }
@@ -34,7 +36,9 @@ class PurchaseOnlyOnce implements PurchaseRule {
 
 class PurchaseService {
     public constructor(
-        private PurchaseRule: PurchaseRule
+        private userId: string, 
+        private productId: string,
+        private purchaseRuleRepo: PurchaseRuleRepo
     ) {}
 
     public purchase() {
@@ -44,7 +48,8 @@ class PurchaseService {
     }
 
     private validate() {
-        const [ok, msg] = this.PurchaseRule.validate()
+        const purchaseRule = this.purchaseRuleRepo.getPurchaseRuleBy(this.productId)
+        const [ok, msg] = purchaseRule.validate(this.userId, this.productId)
         if (!ok) {
             throw new Error(msg)
         }
