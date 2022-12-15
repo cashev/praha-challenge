@@ -8,6 +8,7 @@ export default class Board extends React.Component {
       <Square
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
+        index={i}
       />
     );
   }
@@ -29,11 +30,6 @@ export default class Board extends React.Component {
           {this.renderSquare(6)}
           {this.renderSquare(7)}
           {this.renderSquare(8)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(9)}
-          {this.renderSquare(10)}
-          {this.renderSquare(11)}
         </div>
       </div>
     );
