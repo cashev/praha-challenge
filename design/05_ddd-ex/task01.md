@@ -16,6 +16,7 @@ User Entityに追加すべきではない。
 認証がドメインとして重要であれば追加してもよいが、多くの場合そうではない。  
 インフラ層で保持すべき  
 
+[link-UserEntity]: https://github.com/little-hands/ddd-q-and-a/issues/173  
 [参考][link-UserEntity]  
 
 ## 複数の集約をまたいだ整合性
@@ -49,7 +50,7 @@ Result型など型でチェックを強制することでHuman Errorが発生す
 ## 参考
 
 <https://zenn.dev/praha/articles/5c05ab671fb7ab>  
-[link-UserEntity]: https://github.com/little-hands/ddd-q-and-a/issues/173  
+<https://github.com/little-hands/ddd-q-and-a/issues/173>  
 <https://gcanti.github.io/fp-ts/modules/Either.ts.html>  
 
 > A common use of Either is as an alternative to Option for dealing with possible missing values. In this usage, None is replaced with a Left which can contain useful information. Right takes the place of Some. Convention dictates that Left is used for failure and Right is used for success.
