@@ -44,7 +44,7 @@ Result型など型でチェックを強制することでHuman Errorが発生す
 
 #### 実装例
 
-./post.js
+./post.ts
 
 ## 参考
 
