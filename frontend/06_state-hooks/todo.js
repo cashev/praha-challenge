@@ -24,30 +24,19 @@ const TodoBox = () => {
     setData(newData);
   };
 
-  const handleToggleComplete = (nodeId) => {
-    const newData = data.map((item) => {
-      if (item.id === nodeId) {
-        item.complete = item.complete === "true" ? "false" : "true";
-      }
-      return item;
-    });
-    setData(newData);
-  };
-
   return (
     <div className="well">
       <h1 className="vert-offset-top-0">To do:</h1>
       <TodoList
         data={data}
         removeNode={handleNodeRemoval}
-        toggleComplete={handleToggleComplete}
       />
       <TodoForm onTaskSubmit={handleSubmit} />
     </div>
   );
 };
 
-const TodoList = ({ data, removeNode, toggleComplete }) => {
+const TodoList = ({ data, removeNode }) => {
   return (
     <ul className="list-group">
       {data.map((listItem) => (
@@ -57,16 +46,21 @@ const TodoList = ({ data, removeNode, toggleComplete }) => {
           task={listItem.task}
           complete={listItem.complete}
           removeNode={removeNode}
-          toggleComplete={toggleComplete}
         />
       ))}
     </ul>
   );
 };
 
-const TodoItem = ({ nodeId, task, complete, removeNode, toggleComplete }) => {
+const TodoItem = ({ nodeId, task, complete, removeNode }) => {
+  const [isComplete, setIsComplete] = useState(complete === "true");
+
+  const toggleComplete = () => {
+    setIsComplete(x => !x);
+  };
+
   const classes =
-    complete === "true"
+    isComplete
       ? "list-group-item clearfix list-group-item-success"
       : "list-group-item clearfix";
 
@@ -77,7 +71,7 @@ const TodoItem = ({ nodeId, task, complete, removeNode, toggleComplete }) => {
         <button
           type="button"
           className="btn btn-xs btn-success img-circle"
-          onClick={() => toggleComplete(nodeId)}
+          onClick={toggleComplete}
         >
           &#x2713;
         </button>
