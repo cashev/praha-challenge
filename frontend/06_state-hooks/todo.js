@@ -1,5 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useRef } from "react";
-import ReactDOM from "react-dom";
 
 const TodoBox = () => {
   const [data, setData] = useState([
