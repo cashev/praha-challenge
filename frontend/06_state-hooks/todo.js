@@ -12,12 +12,12 @@ const TodoBox = () => {
     return Math.floor(Math.random() * 90000) + 10000;
   };
 
-  const handleNodeRemoval = (nodeId) => {
+  const handleTodoRemoval = (nodeId) => {
     const newData = data.filter((el) => el.id !== nodeId);
     setData(newData);
   };
 
-  const handleSubmit = (task) => {
+  const handleTodoAddition = (task) => {
     const id = generateId().toString();
     const complete = "false";
     const newData = [...data, { id, task, complete }];
@@ -29,14 +29,14 @@ const TodoBox = () => {
       <h1 className="vert-offset-top-0">To do:</h1>
       <TodoList
         data={data}
-        removeNode={handleNodeRemoval}
+        removeTodo={handleTodoRemoval}
       />
-      <TodoForm onTaskSubmit={handleSubmit} />
+      <TodoForm addTodo={handleTodoAddition} />
     </div>
   );
 };
 
-const TodoList = ({ data, removeNode }) => {
+const TodoList = ({ data, removeTodo }) => {
   return (
     <ul className="list-group">
       {data.map((listItem) => (
@@ -45,14 +45,14 @@ const TodoList = ({ data, removeNode }) => {
           nodeId={listItem.id}
           task={listItem.task}
           complete={listItem.complete}
-          removeNode={removeNode}
+          removeTodo={removeTodo}
         />
       ))}
     </ul>
   );
 };
 
-const TodoItem = ({ nodeId, task, complete, removeNode }) => {
+const TodoItem = ({ nodeId, task, complete, removeTodo }) => {
   const [isComplete, setIsComplete] = useState(complete === "true");
 
   const toggleComplete = () => {
@@ -78,7 +78,7 @@ const TodoItem = ({ nodeId, task, complete, removeNode }) => {
         <button
           type="button"
           className="btn btn-xs btn-danger img-circle"
-          onClick={() => removeNode(nodeId)}
+          onClick={() => removeTodo(nodeId)}
         >
           &#xff38;
         </button>
@@ -87,7 +87,7 @@ const TodoItem = ({ nodeId, task, complete, removeNode }) => {
   );
 };
 
-const TodoForm = ({ onTaskSubmit }) => {
+const TodoForm = ({ addTodo }) => {
   const taskRef = useRef(null);
 
   const doSubmit = (e) => {
@@ -96,7 +96,7 @@ const TodoForm = ({ onTaskSubmit }) => {
     if (!task) {
       return;
     }
-    onTaskSubmit(task);
+    addTodo(task);
     taskRef.current.value = "";
   };
 
