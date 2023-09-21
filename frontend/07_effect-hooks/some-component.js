@@ -4,7 +4,9 @@ export const SomeComponent = ({ someFlag }) => {
   const counterRef = useRef(0);
 
   useEffect(() => {
-    counterRef.current += 1;
+    if (someFlag) {
+      counterRef.current += 1;
+    }
   });
 
   return (
