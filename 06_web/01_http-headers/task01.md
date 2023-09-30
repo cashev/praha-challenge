@@ -51,12 +51,37 @@ identityを指定した場合は、エンコーディングをしないことも
 
 ## refererについて
 
-### rel="noreferrer"
+### noreferrerとは
+
+リンク先にrefererを送信しないようにするための設定。  
+
+### rel="noreferrer"が必要な理由
+
+- パフォーマンス低下を防ぐため  
+- セキュリティ上のリスクが存在するため  
 
 ### 設定しなかった場合について
 
-### 同じオリジン, 異なるオリジンの場合について
+新しいタブやウィンドウで開いたページのJavaScriptが、元のページと同じプロセスで実行される場合があり、  
+元のページのパフォーマンスを低下させうる。  
+新しいタブやウィンドウで開いたページが、  
+元のページのwindow.openerオブジェクトを通じてJavaScriptで元のページを操作する可能性がある。  
+特に外部のサイトへのリンクで問題となる可能性が高い。  
+
+### 追加するHTTPヘッダー
+
+```http
+Referrer-Policy: strict-origin-when-cross-origin
+```
 
 ## 参考
 
 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers>  
+<https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/noreferrer>  
+<https://developer.chrome.com/en/docs/lighthouse/best-practices/external-anchors-use-rel-noopener/>  
+<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy>  
+<https://developer.mozilla.org/en-US/docs/Web/Security/Referer_header:_privacy_and_security_concerns>  
+<https://web.dev/cross-origin-resource-sharing/>  
+<https://web.dev/referrer-best-practices/>  
+<https://html.spec.whatwg.org/multipage/links.html#link-type-noreferrer>  
+<https://blog.ojisan.io/noreferrer-noopener/>  
