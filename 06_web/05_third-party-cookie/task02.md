@@ -4,6 +4,12 @@
 
 [myapp](./myapp/)
 
+### 主な実装箇所
+
+- [index.jade](./myapp/views/index.jade)
+- [index.js](./myapp/routes/index.js)
+- [image.js](./myapp/routes/image.js)
+
 ## 実装内容
 
 `https://XXX.ngrok-free.app/` にアクセスすると、`https://XXX.ngrok-free.app/image` から画像を取得する  
