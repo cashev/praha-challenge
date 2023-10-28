@@ -12,12 +12,19 @@
 
 ## 実装内容
 
-`https://XXX.ngrok-free.app/` にアクセスすると、`https://XXX.ngrok-free.app/image` から画像を取得する  
+`http://localhost:3000/` にアクセスすると、`https://XXX.ngrok-free.app/image` から画像を取得する  
 
 - `http://localhost:3000/` のアクセスで`name=hoge`のFirst Party Cookieが設定される  
 - `https://XXX.ngrok-free.app/image` から画像を取得で、`name=fuga`のThird Party Cookieが設定される  
 
-## ハマリポイント
+## ハマリポイント1
+
+sameSite='none'を設定すると、secure='true'が必要になりhttpsでアクセスする必要がある  
+`http://localhost:3000/image` ではhttpsではないためcookieを設定できない  
+
+そのため/imageのアクセス先はngrokで作成したドメインを指定する  
+
+## ハマリポイント2
 
 expressのバージョンが古いと、`sameSite`が設定できない  
 
@@ -36,7 +43,7 @@ TypeError: option sameSite is invalid
 npm install express
 ```
 
-以下コマンドで、最新版をインストールする必要がある 
+以下コマンドで、最新版をインストールする必要がある  
 
 ```sh
 npm install express@latest --save
