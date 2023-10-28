@@ -6,10 +6,10 @@
 
 ## 実装内容
 
-`https://XXX.ngrok-free.app/` にアクセスすると、`http://localhost:3000/image` から画像を取得する  
+`https://XXX.ngrok-free.app/` にアクセスすると、`https://XXX.ngrok-free.app/image` から画像を取得する  
 
-- `https://XXX.ngrok-free.app/` のアクセスで`name=hoge`のFirst Party Cookieが設定される  
-- `http://localhost:3000/image` から画像を取得で、`name-image=hoge-image`のThird Party Cookieが設定される  
+- `http://localhost:3000/` のアクセスで`name=hoge`のFirst Party Cookieが設定される  
+- `https://XXX.ngrok-free.app/image` から画像を取得で、`name=fuga`のThird Party Cookieが設定される  
 
 ## ハマリポイント
 
@@ -38,4 +38,5 @@ npm install express@latest --save
 
 ## 参考
 
-<https://qiita.com/mininobu/items/b45dbc70faedf30f484e>
+<https://qiita.com/mininobu/items/b45dbc70faedf30f484e>  
+<https://stackoverflow.com/questions/60980204/firebase-nodejs-function-set-cookie-typeerror-option-samesite-is-invalid>  
