@@ -51,7 +51,13 @@ https://example-a.com のページに埋め込まれたJavaScriptから https://
 
 aタグによる遷移は、異なるオリジンのサーバーに対してデータを要求するクロスオリジンリクエストではないため  
 
-## XMLHttpRequestでのクロスサイトリクエスト
+## XMLHttpRequestでクッキー情報を送信する場合
+
+`withCredentials`を true に設定する
+
+```js
+xhr.withCredentials = true;
+```
 
 ## 参考
 
@@ -67,3 +73,4 @@ aタグによる遷移は、異なるオリジンのサーバーに対してデ�
 <https://dev.classmethod.jp/articles/same-site-same-origin/>  
 <https://qiita.com/kawaz/items/1e51c374b7a13c21b7e2>  
 <https://stackoverflow.com/questions/64836305/is-clicking-link-on-an-anchor-tag-a-cross-origin-request>  
+<https://dev.to/zubairmohsin33/sending-cookies-with-cross-origin-cors-request-44m>  
