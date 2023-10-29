@@ -25,6 +25,10 @@ https://example-a.com のページに埋め込まれたJavaScriptから https://
 
 ## Access-Control-Allow-Origin: * の問題点
 
+- 悪意のあるサイトからのリクエストを許可してしまう  
+- クレデンシャル情報(cookie, HTTP認証情報)を送信できない  
+  `Access-Control-Allow-Credentials: true`を設定する場合、`Access-Control-Allow-Origin`には`*`を設定できない  
+
 ## preflight requestが送信されない条件
 
 - GET, HEAD, POSTのいずれかのメソッドを使用する
@@ -45,15 +49,21 @@ https://example-a.com のページに埋め込まれたJavaScriptから https://
 
 ## HTMLのaタグ
 
+aタグによる遷移は、異なるオリジンのサーバーに対してデータを要求するクロスオリジンリクエストではないため  
+
 ## XMLHttpRequestでのクロスサイトリクエスト
 
 ## 参考
 
 <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>  
-<https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request>  
 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin>  
+<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials>  
 <https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy>  
+<https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request>  
 <https://aws.amazon.com/jp/what-is/cross-origin-resource-sharing/>  
 <https://fetch.spec.whatwg.org/#cors-safelisted-request-header>  
 <https://fetch.spec.whatwg.org/#forbidden-header-name>  
+<https://fetch.spec.whatwg.org/#cors-protocol-and-credentials>  
 <https://dev.classmethod.jp/articles/same-site-same-origin/>  
+<https://qiita.com/kawaz/items/1e51c374b7a13c21b7e2>  
+<https://stackoverflow.com/questions/64836305/is-clicking-link-on-an-anchor-tag-a-cross-origin-request>  
