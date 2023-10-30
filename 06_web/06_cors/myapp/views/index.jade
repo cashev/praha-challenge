@@ -7,11 +7,27 @@ block content
   script.
     fetch('http://localhost:3000/', {
       method: 'POST',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ name: 'hoge' }),
     })
-    .then(res => {
-      console.log(res);
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    });
+
+    fetch('https://optimal-bee-feasible.ngrok-free.app/', {
+      method: 'POST',
+      mode: 'cors',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true',
+      }),
+      body: JSON.stringify({ name: 'fuga' }),
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
     });
