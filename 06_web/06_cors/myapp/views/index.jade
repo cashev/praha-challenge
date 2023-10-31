@@ -5,7 +5,33 @@ block content
   p Welcome to #{title}
 
   script.
-    fetch('http://localhost:3000/', {
+    // Simple Request
+    fetch('http://localhost:3000/text', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+      body: 'foo',
+    })
+    .then(res => res.text())
+    .then(data => {
+      console.log(data);
+    });
+    // Simple Request
+    fetch('https://optimal-bee-feasible.ngrok-free.app/text', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+      body: 'bar',
+    })
+    .then(res => res.text())
+    .then(data => {
+      console.log(data);
+    });
+
+    // Simple Requestには該当しない
+    fetch('http://localhost:3000/json', {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -17,13 +43,12 @@ block content
     .then(data => {
       console.log(data);
     });
-
-    fetch('https://optimal-bee-feasible.ngrok-free.app/', {
+    // Simple Requestには該当しない
+    fetch('https://optimal-bee-feasible.ngrok-free.app/json', {
       method: 'POST',
       mode: 'cors',
       headers: new Headers({
         'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true',
       }),
       body: JSON.stringify({ name: 'fuga' }),
     })

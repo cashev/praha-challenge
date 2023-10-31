@@ -7,6 +7,8 @@ const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const jsonRouter = require('./routes/json');
+const textRouter = require('./routes/text');
 
 var app = express();
 
@@ -21,6 +23,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const corsOptions = {
+  origin: ['http://localhost:3000'],
+  methods: ['POST'],
+  optionsSuccessStatus: 200
+};
+
+const corsOptions2 = {
   origin: ['http://localhost:3000', 'https://optimal-bee-feasible.ngrok-free.app'],
   methods: ['POST'],
   optionsSuccessStatus: 200
@@ -28,6 +36,8 @@ const corsOptions = {
 
 app.use('/', cors(corsOptions), indexRouter);
 app.use('/users', usersRouter);
+app.use('/json', cors(corsOptions2), jsonRouter);
+app.use('/text', cors(corsOptions2), textRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
