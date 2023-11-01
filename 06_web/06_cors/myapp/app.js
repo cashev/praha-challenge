@@ -28,16 +28,10 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
-const corsOptions2 = {
-  origin: ['http://localhost:3000', 'https://optimal-bee-feasible.ngrok-free.app'],
-  methods: ['POST'],
-  optionsSuccessStatus: 200
-};
-
-app.use('/', cors(corsOptions), indexRouter);
+app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/json', cors(corsOptions2), jsonRouter);
-app.use('/text', cors(corsOptions2), textRouter);
+app.use('/text', textRouter);
+app.use('/json', cors(corsOptions), jsonRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -8,32 +8,25 @@ block content
     // Simple Request
     fetch('http://localhost:3000/text', {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'text/plain',
       },
       body: 'foo',
-    })
-    .then(res => res.text())
-    .then(data => {
-      console.log(data);
     });
     // Simple Request
     fetch('https://optimal-bee-feasible.ngrok-free.app/text', {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'text/plain',
       },
       body: 'bar',
-    })
-    .then(res => res.text())
-    .then(data => {
-      console.log(data);
     });
 
     // Simple Requestには該当しない
     fetch('http://localhost:3000/json', {
       method: 'POST',
-      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -46,7 +39,6 @@ block content
     // Simple Requestには該当しない
     fetch('https://optimal-bee-feasible.ngrok-free.app/json', {
       method: 'POST',
-      mode: 'cors',
       headers: new Headers({
         'Content-Type': 'application/json',
       }),
