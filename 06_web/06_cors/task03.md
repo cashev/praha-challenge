@@ -4,6 +4,14 @@
 
 [myapp](./myapp)
 
+### 主な実装箇所  
+
+[myapp/app.js](./myapp/app.js)  
+[myapp/routes/index.js](./myapp/routes/index.js)  
+[myapp/routes/text.js](./myapp/routes/text.js)  
+[myapp/routes/json.js](./myapp/routes/json.js)  
+[myapp/views/index.jade](./myapp/views/index.jade)
+
 ### 実装内容
 
 <http://localhost:3000/> にアクセスすると
@@ -21,7 +29,7 @@ const corsOptions = {
 };
 ```
 
-Originに<https://optimal-bee-feasible.ngrok-free.app>を追加していないが、  
+Originに<https://optimal-bee-feasible.ngrok-free.app>を設定していないため、  
 <https://optimal-bee-feasible.ngrok-free.app/text> にPOSTのSimple Requestを送信できる。  
 <https://optimal-bee-feasible.ngrok-free.app/json> にPOSTのSimpleではないRequestは失敗する。  
 
@@ -55,8 +63,11 @@ app.use('/json', cors(jsonCorsOptions), jsonRouter);
 fetchでSimple Requestを送信するにはmodeをno-corsにする必要がある。  
 
 ```js
-fetch('http://localhost:3000/text', { mode: "cors" });
+fetch('http://localhost:3000/text', { mode: "no-cors" });
 ```
+
+`mode: "no-cors"` にすると、JavaScriptでレスポンスの内容を取得できないため、  
+developer toolsのnetworkタブ と expressのlog出力で リクエスト/レスポンスを確認する。  
 
 ## 参考
 
