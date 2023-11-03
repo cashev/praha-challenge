@@ -14,7 +14,7 @@
 
 ### 実装内容
 
-<http://localhost:3000/> にアクセスすると
+<http://localhost:3000/> , <https://optimal-bee-feasible.ngrok-free.app> にそれぞれアクセスすると
 
 - <http://localhost:3000/text> にPOSTのSimple Requestを送信する
 - <https://optimal-bee-feasible.ngrok-free.app/text> にPOSTのSimple Requestを送信する
@@ -29,9 +29,13 @@ const corsOptions = {
 };
 ```
 
-Originに<https://optimal-bee-feasible.ngrok-free.app>を設定していないため、  
-<https://optimal-bee-feasible.ngrok-free.app/text> にPOSTのSimple Requestを送信できる。  
-<https://optimal-bee-feasible.ngrok-free.app/json> にPOSTのSimpleではないRequestは失敗する。  
+<http://localhost:3000/> からリクエストについて、  
+<http://localhost:3000/> はOriginに設定しているためすべてのリクエストが成功する。  
+
+<https://optimal-bee-feasible.ngrok-free.app/> からのリクエストについて、  
+Originに<https://optimal-bee-feasible.ngrok-free.app> を設定していないため、  
+<http://localhost:3000/text> へのPOSTのSimple Requestを送信できる。  
+<http://localhost:3000/json> へのPOSTのSimpleではないRequestは失敗する。  
 
 ### ハマリポイント
 
