@@ -73,13 +73,27 @@
 
 ### 上限を超えた場合
 
+LRUポリシーに従って最後に利用したオリジンのデータを削除し、容量が空くまで繰り返す。  
+
 ### 上限について
+
+- Chrome  
+  ディスク容量の80%
+- Firefox  
+  ディスク容量の50%
+- Safari  
+  1GB
 
 ## expiresについて
 
 ### 理由
 
+有効期限が切れるまでキャッシュが使用されるため、動的なサイトの内容が更新されてもユーザーに反映されない。  
+
 ### 改善策
+
+`Cache-Control: no-cache`を指定する。  
+キャッシュは行われるが、更新がないかチェックする。  
 
 ## 実例
 
@@ -92,6 +106,7 @@
 ## 参考
 
 <https://vishalrana9915.medium.com/deep-dive-in-caching-9780bc55ea7>  
+<https://www.cloudflare.com/learning/cdn/what-is-caching/>  
 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching>  
 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control>  
 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expires>  
@@ -99,3 +114,5 @@
 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Last-Modified>  
 <https://blog.jxck.io/entries/2019-01-19/cache-digest-status.html>  
 <https://www.fastly.com/blog/best-practices-using-vary-header>  
+<https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria>  
+<https://web.dev/articles/storage-for-the-web>  
