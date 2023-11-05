@@ -6,7 +6,7 @@
 - ネットワークの混雑を避ける  
 - サーバーの負荷を下げる  
 
-キャッシュがない場合、都度サーバーへリクエストを行い、レスポンスを受け取る必要があるため時間がかかる。    
+キャッシュがない場合、都度サーバーへリクエストを行い、レスポンスを受け取る必要があるため時間がかかる。  
 都度リクエストが行われるため、ある程度ユーザー数がいる場合、ネットワークが混雑する。  
 リクエストを処理するためサーバーの負荷があがる。  
 
@@ -31,7 +31,43 @@
 
 ## キャッシュの種類
 
+- ブラウザキャッシュ  
+- プロキシキャッシュ  
+- CDNキャッシュ  
+
+### 違い
+
+キャッシュコンテンツを保存する場所が異なる。  
+
 ## HTTP Headers
+
+- Cache-Control  
+  キャッシュの制御を行う。  
+  キャッシュするかどうか, キャッシュの有効期間, キャッシュの種類などを指定する。  
+- Expires  
+  キャッシュの有効期限を指定する。  
+  Cache-Controlのmax-age, s-maxageがある場合、Expiresの値は無視され、  
+  max-age, s-maxageが優先される。  
+- ETag  
+  キャッシュのバージョンを指定する。  
+  リソースの内容が変更された場合、ETagの値も変更される。  
+  ETagの値が変更された場合、キャッシュは無効となる。  
+- Last-Modified  
+  リソースの最終更新日時を指定する。  
+  ETagよりも精度が低いが、その代替手段になる。  
+- Vary  
+  リクエストの内容に影響するヘッダーを指定する。  
+  HTTP headerをキャッシュキーにすることができる。  
+  - 例  
+  Vary: Accept-Encoding  
+  最初のリクエストでAccept-Encoding: gzipのレスポンスをキャッシュする。  
+  2回目以降に同じメソッド, 同じURLへのリクエストでもAccept-Encoding: gzipではない場合、キャッシュを利用しない。  
+- Pragma  
+  HTTP/1.0の時代にキャッシュを制御するために使用されていた。  
+  HTTP/1.0 クライアントとの下位互換性のためにのみ使用される。  
+- Age
+  キャッシュされてからの経過時間を秒単位で指定する。  
+  プロキシキャッシュがレスポンスをキャッシュした場合に使用される。  
 
 ## ブラウザのキャッシュサイズ
 
@@ -55,4 +91,11 @@
 
 ## 参考
 
-<https://vishalrana9915.medium.com/deep-dive-in-caching-9780bc55ea7>
+<https://vishalrana9915.medium.com/deep-dive-in-caching-9780bc55ea7>  
+<https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching>  
+<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control>  
+<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expires>  
+<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag>  
+<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Last-Modified>  
+<https://blog.jxck.io/entries/2019-01-19/cache-digest-status.html>  
+<https://www.fastly.com/blog/best-practices-using-vary-header>  
