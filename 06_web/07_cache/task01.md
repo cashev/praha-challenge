@@ -93,15 +93,34 @@ LRUポリシーに従って最後に利用したオリジンのデータを削�
 ### 改善策
 
 `Cache-Control: no-cache`を指定する。  
-キャッシュは行われるが、更新がないかチェックする。  
+キャッシュは行われるが、更新がないかどうかを確認するためにサーバーへリクエストを行う。  
+更新ない場合は304 Not Modifiedが返され、キャッシュを利用する。  
 
 ## 実例
 
 ### 例1
 
+<https://www.mozilla.org/en-US/>  
+
+[./example/mozilla.png](./example/mozilla.png)  
+
+CloudFrontに保存されたキャッシュ  
+
 ### 例2
 
+<https://zenn.dev/>  
+
+[./example/zenn.png](./example/zenn.png)  
+
+ブラウザに保存されたキャッシュ  
+
 ### 例3
+
+<https://www.fastly.com/>
+
+[./example/fastly.png](./example/fastly.png)
+
+### キャッシュの仕組み
 
 ## 参考
 
