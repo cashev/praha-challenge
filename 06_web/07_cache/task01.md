@@ -102,7 +102,7 @@ LRUポリシーに従って最後に利用したオリジンのデータを削�
 
 <https://www.mozilla.org/en-US/>  
 
-[./example/mozilla.png](./example/mozilla.png)  
+![./example/mozilla.png](./example/mozilla.png)  
 
 CloudFrontに保存されたキャッシュ  
 
@@ -110,7 +110,7 @@ CloudFrontに保存されたキャッシュ
 
 <https://zenn.dev/>  
 
-[./example/zenn.png](./example/zenn.png)  
+![./example/zenn.png](./example/zenn.png)  
 
 ブラウザに保存されたキャッシュ  
 
@@ -118,7 +118,7 @@ CloudFrontに保存されたキャッシュ
 
 <https://www.fastly.com/>
 
-[./example/fastly.png](./example/fastly.png)
+![./example/fastly.png](./example/fastly.png)  
 
 ### キャッシュの仕組み
 
