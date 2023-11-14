@@ -104,7 +104,14 @@ LRUポリシーに従って最後に利用したオリジンのデータを削�
 
 ![./example/mozilla.png](./example/mozilla.png)  
 
-CloudFrontに保存されたキャッシュ  
+- キャッシュの仕組み  
+
+CloudFrontに保存されたキャッシを利用  
+
+1回目のレスポンスによって、ETagの値をブラウザは保存する。cache-control: max-age=600 によってCloud Frontに10分間キャッシュされる。  
+2回目以降のリクエストにてブラウザはIf-None-MatchにETagの値を指定する。  
+サーバーはETagの値を確認し、変更がない場合304 Not Modifiedを返す。  
+Accept-Encodingの値が同じかつ、10分以内の場合キャッシュは有効なため、Cloud Frontのキャッシュが利用される。  
 
 ### 例2
 
@@ -112,7 +119,11 @@ CloudFrontに保存されたキャッシュ
 
 ![./example/zenn.png](./example/zenn.png)  
 
-ブラウザに保存されたキャッシュ  
+- キャッシュの仕組み  
+
+publicに保存されたキャッシを利用  
+
+仕組みは例1と同じ。  
 
 ### 例3
 
@@ -120,7 +131,11 @@ CloudFrontに保存されたキャッシュ
 
 ![./example/fastly.png](./example/fastly.png)  
 
-### キャッシュの仕組み
+- キャッシュの仕組み  
+
+1回目のレスポンスで指定されたETagがブラウザに保存される。cache-control: max-age=0, must-revalidate によってキャッシュは保存される。  
+2回目以降のリクエストにてブラウザはIf-None-MatchにETagの値を指定しキャッシュが有効かどうかを確認する。  
+CDNのキャッシュにヒットしたため、304 Not Modifiedが返されキャッシュが利用される。  
 
 ## 参考
 
@@ -135,3 +150,8 @@ CloudFrontに保存されたキャッシュ
 <https://www.fastly.com/blog/best-practices-using-vary-header>  
 <https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria>  
 <https://web.dev/articles/storage-for-the-web>  
+<https://web.dev/articles/http-cache>  
+<https://jakearchibald.com/2016/caching-best-practices/>  
+<https://www.mnot.net/blog/2007/05/15/expires_max-age>  
+<https://qiita.com/yuuuking/items/4f11ccfc822f4c198ab0>  
+<https://zenn.dev/praha/articles/1430a4100b2c8a>  
