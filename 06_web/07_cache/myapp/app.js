@@ -7,7 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const withCacheRouter = require('./routes/with-cache');
-const noCacheRouter = require('./routes/no-cache');
+const withoutCacheRouter = require('./routes/without-cache');
 
 var app = express();
 
@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/with-cache', withCacheRouter);
-app.use('/no-cache', noCacheRouter);
+app.use('/without-cache', withoutCacheRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

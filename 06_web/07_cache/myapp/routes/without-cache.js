@@ -17,8 +17,7 @@ axios({
 
 /* GET image. */
 router.get('/', function(req, res, next) {
-  res.set('Cache-Control', 'no-cache');
-  
+  res.set('Cache-Control', 'no-store');
   res.set('Content-Type', 'image/jpeg');
   res.send(imageBuffer);
 });
