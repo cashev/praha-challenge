@@ -155,3 +155,5 @@ CDNのキャッシュにヒットしたため、304 Not Modifiedが返されキ�
 <https://www.mnot.net/blog/2007/05/15/expires_max-age>  
 <https://qiita.com/yuuuking/items/4f11ccfc822f4c198ab0>  
 <https://zenn.dev/praha/articles/1430a4100b2c8a>  
+<https://zenn.dev/jxck/books/cache-anatomia>  
+<https://blog.jxck.io/entries/2023-11-05/reload-and-cache.html>  
