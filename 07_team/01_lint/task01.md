@@ -24,10 +24,10 @@
 
 ### ESLintをかける
 
-praha-challenge/06_web/05_third-party-cookie/myapp
+[learn-lint](https://github.com/cashev/learn-lint)
 
 ```sh
 npx install-peerdeps --dev eslint-config-airbnb-base
 npx eslint --init
-npx eslint app.js ./routes/*
+npx eslint --fix .
 ```
