@@ -25,3 +25,10 @@ husky - pre-commit script failed (code 1)
 ```
 
 ## 問題点
+
+- 環境に依存する  
+  開発者の環境によってはhookが正常に動作しない可能性がある
+- 手動スキップ可能  
+  hookを無視してcommitすることができてしまう
+- パフォーマンス  
+  hookでいろいろな処理(lint, format, test)を行うとcommitの度に処理が走ることになる
