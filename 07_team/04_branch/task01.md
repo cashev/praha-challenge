@@ -47,14 +47,31 @@ feature: masterから個々の機能ごとにブランチを切って開発す�
 ## ブランチベース
 
 - メリット
+  - 開発中の機能ごとにブランチを切るため、開発が分かりやすい
 - デメリット
+  - 長い期間ブランチが存在すると、マージが難しくなる
 
 ## トランクベース
 
+1つのブランチ(master)上で直接作業を行うか、1,2日以内にマージすることを前提とした作業用ブランチで作業する手法  
+
 - メリット
+  - 作業単位が小さいため、マージが容易  
+    レビューの時間が減る
+  - デプロイ頻度が高い
 - デメリット
+  - 品質担保が難しい  
+    テストが必須
+  - 作業を細かい単位で行うため、開発が分かりにくい
+  - 更新のタイミングによって競合が発生しうる
+  - 開発中の機能がmasterブランチにマージされるため、リリース前のテストが難しい  
+    feature flagを使う必要がある  
 
 ## どちらを採用するか
+
+ブランチベース  
+
+開発中の機能ごとにブランチを切るため、開発が分かりやすい
 
 ## 参考
 
@@ -63,3 +80,5 @@ feature: masterから個々の機能ごとにブランチを切って開発す�
 - <https://nvie.com/posts/a-successful-git-branching-model/>
 - <https://www.alexhyett.com/git-flow-github-flow/>
 - <https://atmarkit.itmedia.co.jp/ait/articles/1708/01/news015.html>
+- <https://rheb.hatenablog.com/entry/2021/08/24/%E3%83%88%E3%83%A9%E3%83%B3%E3%82%AF%E3%83%99%E3%83%BC%E3%82%B9%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6>
+- <https://www.atlassian.com/ja/continuous-delivery/continuous-integration/trunk-based-development>
