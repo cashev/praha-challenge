@@ -2,6 +2,8 @@
 
 ## Git flow
 
+[イメージ図](./images/GitFlow.drawio.png)
+
 master: 常にリリース可能な状態のメインブランチ  
 develop: メインのブランチで、ここから個々の機能ごとにブランチを切って開発を進める  
 feature: developから個人別にブランチを切って開発する  
@@ -29,6 +31,8 @@ release: リリース直前用のブランチ
   - 小規模なプロジェクトにはオーバースペックである
 
 ## GitHub flow
+
+[イメージ図](./images/GitHubFlow.drawio.png)
 
 master: 常にリリース可能な状態のメインブランチ
 feature: masterから個々の機能ごとにブランチを切って開発する
