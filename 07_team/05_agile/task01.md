@@ -4,7 +4,21 @@
 
 ### アジャイル開発とは
 
-### 開発スピードが上がるか？
+柔軟性を重視し継続的な改善を促進することを目指すソフトウェア開発手法。  
+ウォーターフォールモデルとは異なり、アジャイルでは短い期間で小さな成果物を繰り返し作り、  
+顧客とのコラボレーションを通じてフィードバックを取り入れながら進める。  
+
+#### どのような問題を解決するか
+
+ウォーターフォールモデルでは、要求定義や設計、実装、テストといった工程を順番に進めるため、  
+ユーザー要求に変更が発生した場合、後戻りが難しい。  
+アジャイル開発では短い期間で小さな成果物を繰り返し作るため、ユーザー要求の変更に柔軟に対応することができる。  
+
+### 開発スピードが上がるのは正しいか
+
+あらかじめ決まったものを作る場合、ウォーターフォールモデルと開発スピードに差はない。  
+しかしユーザー要求が変わる場合、要件定義からやり直さなければならないウォーターフォールモデルと異なり、  
+アジャイル開発では要求の変更に柔軟に対応できるため、開発スピードが上がる。  
 
 ### 用語
 
@@ -41,3 +55,15 @@
 ##### 途中進捗のストーリーポイント
 
 #### レトロスペクティブ
+
+## 参考
+
+- <https://en.wikipedia.org/wiki/Agile_software_development>  
+- [アジャイル開発の進め方](https://www.ipa.go.jp/digital/hjuojm000000gwoo-att/000065606.pdf)
+- [アジャイルソフトウェア開発宣言の読みとき方](https://www.ipa.go.jp/jinzai/skill-standard/plus-it-ui/itssplus/ps6vr70000001i7c-att/000065601.pdf)
+- [なぜ、いまアジャイルが必要か？](https://www.ipa.go.jp/jinzai/skill-standard/plus-it-ui/itssplus/ps6vr70000001i7c-att/000073019.pdf)
+- [Agile isn’t faster](https://www.engineeringforhumans.com/agile/agile-isnt-faster/)
+- [アジャイル開発とは？プロジェクト推進からチームビルディング、見積もりのコツまでを完全解説](https://thinkit.co.jp/article/22032)
+- [非アジャイルマニフェスト](https://kawaguti.hateblo.jp/entry/2018/10/31/114305)
+- [What is Agile?](https://speakerdeck.com/kawaguti/what-is-agile)
+- <https://miro.com/ja/agile/what-is-agile-workflow/>
