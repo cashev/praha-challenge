@@ -93,7 +93,25 @@ IAM, Organizations, Accountに関する権限があるかどうか。
 
 ## グループ
 
+### グループを作成してユーザーを追加する
+
+- Administratorsグループを作成し、ユーザーを追加
+
+![createAdministrators](./images/createAdministrators.png)
+
+- AdministratorsグループにAdministratorAccessポリシーをアタッチ
+
+![administratorsPermissions](./images/administratorsPermissions.png)
+
+- Administratorsグループに所属するユーザーでログイン
+
+![signinAsAdministrationGroupUser](./images/signinAsAdministrationGroupUser.png)
+
 ### ポリシーの付与とグループへの所属
+
+AdministratorAccessポリシーはとても強い権限のため、誰がこの権限を持っているかを把握したい。  
+個別にユーザーにアタッチすると誰がこの権限を持っているかを把握しにくい。
+グループにアタッチしてユーザーを所属させることで誰がこの権限を持っているかを把握しやすくなる。  
 
 ## サービスのIAM
 
