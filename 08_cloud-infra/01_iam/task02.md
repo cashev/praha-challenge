@@ -109,17 +109,85 @@ IAM, Organizations, Accountに関する権限があるかどうか。
 
 ### ポリシーの付与とグループへの所属
 
+グループに付与してユーザを所属させる。  
 AdministratorAccessポリシーはとても強い権限のため、誰がこの権限を持っているかを把握したい。  
 個別にユーザーにアタッチすると誰がこの権限を持っているかを把握しにくい。
 グループにアタッチしてユーザーを所属させることで誰がこの権限を持っているかを把握しやすくなる。  
 
 ## サービスのIAM
 
+- S3にアクセスするためのIAMロールを作成  
+
+![createS3AccessRole](./images/createS3AccessRole.png)
+
+- EC2インスタンスを作成
+
+![createEC2Instance](./images/createEC2Instance.png)
+
+- S3バケットを作成
+
+![createS3Bucket](./images/createS3Bucket.png)
+
+- EC2インスタンス上でS3バケットにアクセス
+
+```sh
+aws s3 ls s3://test-bucket0506
+```
+
+![lsS3Bucket](./images/lsS3Bucket.png)
+
+- 特定のS3バケットのみにアクセス権を付与する場合
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::test-bucket0506"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::test-bucket0506/*"
+            ]
+        }
+    ]
+}
+```
+
+![lsS3LimitedBucket](./images/lsS3LimitedBucket.png)
+
 ### インスタンスにロールを付与するか、ポリシーを付与するか
+
+ロールを付与する。  
+スケーリングなどで複数インスタンスに同じ権限を付与する場合、ロールを付与することで一元管理ができる。  
 
 ### Resource basedとIdentity basedの違い
 
+- Identity based
+  - IAMユーザー、グループ、ロールにアタッチされるポリシー
+  - 特定のユーザーやグループのアクセスを制御したい場合に使用する。
+- Resource based
+  - S3バケット、SNSトピック、SQSキューなど、AWSのリソースに対してアタッチされるポリシー
+  - リソース自体が誰にアクセスを許可するかを決定するため、  
+    AWS のリソースに対するアクセスをより広範囲に制御したい場合に使用する。
+
+- 参考
+  - [アイデンティティベースおよびリソースベースのポリシー](https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/access_policies_identity-vs-resource.html)
+
 ### S3に設定した方が良い項目
+
+Block public access  
+S3バケットポリシーでパブリックアクセスを禁止する設定を行う。  
 
 ## 設計方針
 
