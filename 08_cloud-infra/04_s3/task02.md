@@ -24,4 +24,21 @@
 
 ### レプリケーション
 
+- レプリケーションを設定する
+
+  - バケットを作成  
+![createBuckets](./images/createBuckets.png)
+
+  - レプリケーションを設定  
+![applyReplication](./images/applyReplication.png)
+
+- レプリケーション元にオブジェクトをアップロード
+  - レプリケーション元  
+![uploadToTokyo](./images/uploadToTokyo.png)
+  - レプリケーション先  
+![copyToUsEast](./images/copyToUsEast.png)
+
+- 参考
+  - [Amazon S3のレプリケーション機能を使用してみました。](https://dev.classmethod.jp/articles/lim-s3-replication/)
+
 ### バージョニング
