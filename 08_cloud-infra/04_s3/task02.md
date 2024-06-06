@@ -42,3 +42,15 @@
   - [Amazon S3のレプリケーション機能を使用してみました。](https://dev.classmethod.jp/articles/lim-s3-replication/)
 
 ### バージョニング
+
+- バージョニングを有効化  
+![enableVersioning](./images/enableVersioning.png)
+
+- オブジェクトをアップロード  
+![uploadObject](./images/uploadObject.png)
+
+- オブジェクトを削除
+![deleteObject](./images/deleteObject.png)
+
+- オブジェクトを復元
+![restoreObject](./images/restoreObject.png)
