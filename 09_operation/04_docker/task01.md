@@ -60,12 +60,72 @@ Dockerfile内で複数の`FROM`ステートメントを使用して、異なる�
 - 参考
   - [Multi-stage builds](https://docs.docker.com/build/building/multi-stage/)
 
-### Dockerfileのメリット
+### Dockerfileを作成するメリット
+
+- 依存関係の明確化  
+  依存するライブラリや設定をDockerfileに記述することで、アプリケーションの依存関係を明確化できる。
+- 環境の再現性と一貫性の向上  
+  Dockerfileによって同じ環境を簡単に容易に再現できる。  
+  チーム内で同一の開発環境を共有できる。
+- バージョン管理と変更履歴の追跡が可能
+  環境をコード化しバージョン管理することで、変更履歴を追跡できる。  
+- 自動化による効率化  
+  環境構築の手順が自動化されるため、手作業による時間を削減できる。  
+- スケーラビリティの向上  
+  同じ環境を簡単に複製できるため、システムのスケールアウトが容易になる。  
+  ECSなどのコンテナオーケストレーションツールと組み合わせることで、自動スケーリングが可能になる。  
 
 ### docker-composeの役立つ場面
 
+- 複数のコンテナを使用する環境の構築
+  - 開発環境の構築  
+    アプリケーションとデータベース、キャッシュサーバーなど複数のコンテナを組み合わせた開発環境を構築できる。  
+  - テスト環境の構築  
+    テスト用のコンテナを組み合わせた環境を構築し、テストを自動化することができる。  
+  - シングルホスト上で複数のコンテナを管理する場合  
+    1つのホスト上でアプリケーションやデータベースを構築する場合、  
+    docker-composeを使用することで複数のコンテナを管理しやすくなる。
+
+- 参考  
+  - [Why use Compose?](https://docs.docker.com/compose/intro/features-uses/)
+  - [What is Docker Compose](https://phoenixnap.com/kb/docker-compose)
+
 ### .dockerignoreに含めるファイル
+
+Dockerイメージのビルド時に除外したいファイルやディレクトリ  
+不要なファイルやディレクトリを除外することで、ビルド時間の短縮しイメージサイズの削減することができる。
+
+- ログファイル
+- 一時ファイル
+- テストデータ
+- ドキュメント
+- .git
+- Dockerfile
+- docker-compose.yml
+- エディタの設定ファイル
+  - .vscode
+  - .idea
+
+- 参考
+  - [How to Use a .dockerignore File: A Comprehensive Guide with Examples](https://hn.mrugesh.dev/how-to-use-a-dockerignore-file-a-comprehensive-guide-with-examples)
+  - [How to Use a .dockerignore File?](https://www.geeksforgeeks.org/how-to-use-a-dockerignore-file/)
 
 ### パッケージについて
 
+分割して記述した場合、別々のレイヤーとしてキャッシュされる。  
+そのため`apt-get install [something]`を編集しても、`apt-get update`は前のステップで作成したキャッシュを再利用するため、  
+古いバージョンのパッケージがインストールされる可能性がある。  
+
+- 参考
+  - [Building best practices #apt-get](https://docs.docker.com/build/building/best-practices/#apt-get)
+
 ### ENVについて
+
+- ENV NAME='hoge'  
+  イメージ,コンテナ内で永続的に環境変数として利用できる。  
+  マルチストレージビルドでも引き継がれる。  
+- RUN export NAME='hoge'  
+  そのRUNコマンド内でのみ有効な環境変数として利用できる。
+
+- 参考
+  - [docker ENV vs RUN export](https://stackoverflow.com/questions/33379393/docker-env-vs-run-export)
