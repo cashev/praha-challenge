@@ -93,7 +93,7 @@ npx tsc --init
 ### issueの一覧を取得する
 
 ```sh
-npx tsx src/index.ts  cashev praha-challenge
+npx tsx src/index.ts <owner> <repository>
 ```
 
 <https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#list-repository-issues>
@@ -101,7 +101,7 @@ npx tsx src/index.ts  cashev praha-challenge
 ### issueにコメントする
 
 ```sh
-npx tsx src/index.ts  comment praha-challenge -i <issue番号> -c <コメント>
+npx tsx src/index.ts <owner> <repository> -i <issue番号> -c <コメント>
 ```
 
 <https://docs.github.com/en/rest/issues/comments?apiVersion=2022-11-28#create-an-issue-comment>
