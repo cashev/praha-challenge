@@ -1,9 +1,13 @@
 import { Command } from 'commander';
 import { Octokit } from "octokit";
+import { Endpoints } from "@octokit/types";
 
 const octokit = new Octokit({ 
   auth: process.env.GITHUB_TOKEN,
 });
+
+type listIssuesResponse = Endpoints['GET /repos/{owner}/{repo}/issues']['response'];
+type createCommentResponse = Endpoints['POST /repos/{owner}/{repo}/issues/{issue_number}/comments']['response'];
 
 const program = new Command();
 
@@ -21,32 +25,33 @@ const options = program.opts();
 // Fetch issues from the repository
 const fetchIssues = async (owner: string, repo: string) => {
   try {
-    const { data } = await octokit.request('GET /repos/{owner}/{repo}/issues', {
+    const { data }: listIssuesResponse = await octokit.request('GET /repos/{owner}/{repo}/issues', {
       owner,
       repo,
     });
 
-    data.filter((issue: any) => !issue.pull_request).sort((a: any, b: any) => a.number - b.number)
-    .forEach((issue: any) => {
+    // PRも含まれるので、Issueのみを表示する
+    data.filter((issue) => !issue.pull_request).sort((a, b) => a.number - b.number)
+    .forEach((issue) => {
       console.log(`#${issue.number} - ${issue.title}`);
     });
-  } catch (error: any) {
-    console.error('Error fetching issues:', error.message);
+  } catch (error) {
+    console.error('Error fetching issues:', error);
   }
 };
 
 // Add comment to the issue
 const addComment = async (owner: string, repo: string, issue: number, comment: string) => {
   try {
-    const { data } = await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
+    const { data }: createCommentResponse = await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
       owner,
       repo,
       issue_number: issue,
       body: comment,
     });
     console.log('Comment added:', data.html_url);
-  } catch (error: any) {
-    console.error('Error adding comment:', error.message);
+  } catch (error) {
+    console.error('Error adding comment:', error);
   }
 }
 

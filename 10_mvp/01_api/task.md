@@ -82,6 +82,24 @@
 
 ## 実装
 
+```sh
+npm init -y
+npm install typescript ts-node axios commander @types/node @types/commander
+npx tsc --init
+```
+
 ### issueの一覧を取得する
 
+```sh
+npx tsx src/index.ts  cashev praha-challenge
+```
+
+<https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28#list-repository-issues>
+
 ### issueにコメントする
+
+```sh
+npx tsx src/index.ts  comment praha-challenge -i <issue番号> -c <コメント>
+```
+
+<https://docs.github.com/en/rest/issues/comments?apiVersion=2022-11-28#create-an-issue-comment>
