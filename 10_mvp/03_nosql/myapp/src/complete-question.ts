@@ -17,14 +17,15 @@ const questionId = program.args[1];
 
 async function completeQuestion(userId: string, questionId: string): Promise<void> {
   try {
-    const userRef = db.collection('users').doc(userId);
-    const userDoc = await userRef.get();
-    if (!userDoc.exists) {
+    const usersRef = db.collection('users');
+    const snapshot = await usersRef.where('id', '==', userId).get();
+    if (snapshot.empty) {
       console.log(`User with id: ${userId} does not exist.`);
       return;
     }
 
-    const userData = userDoc.data() as User;
+    const userRef = snapshot.docs[0].ref;
+    const userData = snapshot.docs[0].data() as User;
     const questions = userData.questions;
     const questionIndex = questions.findIndex(question => question.id === questionId && question.status === QuestionStatus.Yet);
     if (questionIndex === -1) {
