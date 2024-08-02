@@ -68,6 +68,7 @@ npx tsx src/list-question-status.ts -userId <userIds>
 ### 課題を更新
 
 ```sh
+npx tsx src/update-question.ts <questionId> <title> <description>
 ```
 
 ### 課題を削除
