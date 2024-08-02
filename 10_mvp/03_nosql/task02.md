@@ -74,4 +74,5 @@ npx tsx src/update-question.ts <questionId> <title> <description>
 ### 課題を削除
 
 ```sh
+npx tsx src/delete-question.ts <questionId>
 ```
