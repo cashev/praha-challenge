@@ -6,7 +6,7 @@
 
 ```sh
 npm init -y
-npm install typescript ts-node commander @types/node @types/commander firebase
+npm install typescript ts-node commander @types/node @types/commander firebase-admin
 npx tsc --init --rootDir src --outDir out --esModuleInterop --resolveJsonModule --lib es6,dom --module commonjs
 ```
 
