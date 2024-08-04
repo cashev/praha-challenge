@@ -10,10 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/commander": "^2.12.2",
     "@types/node": "^22.1.0",
-    "airtable": "^0.12.2",
-    "commander": "^12.1.0",
+    "axios": "^1.7.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
