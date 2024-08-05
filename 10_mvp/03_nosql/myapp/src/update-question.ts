@@ -18,22 +18,22 @@ async function updateQuestion(questionId: string, title: string, description: st
   try {
     const usersRef = db.collection('users');
     const snapshot = await usersRef.get();
-    const updatePromises = snapshot.docs.map(async doc => {
+    const batch = db.batch();
+    snapshot.docs.forEach(doc => {
       const userData = doc.data();
       const questions = userData.questions as Question[];
-      if (!userData.questions) {
+      if (!questions) {
         return;
       }
       const questionIndex = questions.findIndex(question => question.id === questionId);
-      if (questionIndex === -1) {
-        return;
+      if (questionIndex !== -1) {
+        questions[questionIndex].title = title;
+        questions[questionIndex].description = description;
+        batch.update(doc.ref, { questions });
       }
-      questions[questionIndex].title = title;
-      questions[questionIndex].description = description;
-      await doc.ref.update({ questions });
     });
 
-    await Promise.all(updatePromises);
+    await batch.commit();
     console.log('Question updated successfully');
   } catch (error) {
     console.error('Error updating question:', error);

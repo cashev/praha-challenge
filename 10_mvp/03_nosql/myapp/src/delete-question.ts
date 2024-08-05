@@ -13,20 +13,21 @@ async function deleteQuestion(questionId: string): Promise<void> {
   try {
     const usersRef = db.collection('users');
     const snapshot = await usersRef.get();
-    const deletePromises = snapshot.docs.map(async doc => {
+    const batch = db.batch();
+    snapshot.docs.forEach(doc => {
       const userData = doc.data();
       const questions = userData.questions;
       if (!questions) {
         return;
       }
       const questionIndex = questions.findIndex((question: any) => question.id === questionId);
-      if (questionIndex === -1) {
-        return;
+      if (questionIndex !== -1) {
+        questions.splice(questionIndex, 1);
+        batch.update(doc.ref, { questions });
       }
-      questions.splice(questionIndex, 1);
-      await doc.ref.update({ questions });
     });
-    await Promise.all(deletePromises);
+
+    await batch.commit();
     console.log('Question deleted successfully');
   } catch (error) {
     console.error('Error deleting question:', error);
