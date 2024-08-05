@@ -45,10 +45,8 @@ app.post('/users', async (req, res) => {
   }
 
   try {
-    const data = { records: [{ fields: value }] };
-    console.log(JSON.stringify(data));
     const response = await axios.post(`https://api.airtable.com/v0/${baseId}/${tableName}`, 
-      data,
+      { records: [{ fields: value }] },
       {
         headers: {
           Authorization: `Bearer ${airtableToken}`,
