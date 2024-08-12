@@ -125,9 +125,12 @@ OAuth2.0はウェブサイトやアプリケーションが、
   - [OAuth 2 Simplified #Authorization](https://aaronparecki.com/oauth-2-simplified/#authorization)
   - [OAuth 2.0 全フローの図解と動画](https://qiita.com/TakahikoKawasaki/items/200951e5b5929f840a1f)
 
-#### authorization code を使うこと
-
 #### OAuth2.0の図解
+
+![OAuth2.0.drawio.png](./drawio/OAuth2.0.drawio.png)
+
+- 参考
+  - [OAuth 2.0 認可コードグラントフローについて理解したことをまとめます](https://moneyforward-dev.jp/entry/2022/12/01/authorization-code-grant-flow/)
 
 ### Twitter
 
