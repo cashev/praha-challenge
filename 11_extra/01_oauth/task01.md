@@ -188,6 +188,21 @@ OAuth2.0はウェブサイトやアプリケーションが、
 
 ### Open ID Connect
 
+OAuth2.0のプロトコルをベースに、ユーザーを認証する仕組み。  
+シングルサインオン（SSO）を実現するために使用される。  
+
 #### Open ID Connectの図解
 
+![Open ID Connect.drawio.png](./drawio/OpenIDConnect.drawio.png)
+
 #### メリット
+
+- ユーザー認証が可能  
+  OAuth2.0のプロトコルを拡張し、ユーザー認証が可能。
+- シングルサインオン（SSO）が可能  
+  Open ID Connectを使うことで、複数のアプリケーション間でシングルサインオンが可能。
+
+- 参考
+  - [What is OpenID Connect](https://openid.net/developers/how-connect-works/)
+  - [一番分かりやすい OpenID Connect の説明](https://qiita.com/TakahikoKawasaki/items/498ca08bbfcc341691fe)
+  - [OpenID Connect Authorization Code Flow](https://backstage.forgerock.com/docs/idm/7/self-service-reference/cdm-socialid-connect-flow.html)
