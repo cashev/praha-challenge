@@ -28,13 +28,13 @@
             <mxPoint x="700" y="240" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="JRYB5nmN3bFoew6HLBh7-8" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;ブラウザに返答する&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;以下を含むサーバーHelloメッセージを送る&lt;br&gt;&lt;/span&gt;&lt;div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;・サーバー証明書&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;・利用する暗号スイート&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;・ランダムなバイト列(サーバーシークレット)&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" parent="1" edge="1">
+        <mxCell id="JRYB5nmN3bFoew6HLBh7-8" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;ブラウザに返答する&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;以下を含むサーバーHelloメッセージを送る&lt;br&gt;&lt;/span&gt;&lt;div&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;・TLSサーバー証明書&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;・利用する暗号スイート&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;・ランダムなバイト列(サーバーシークレット)&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" parent="1" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="700" y="400" as="sourcePoint" />
             <mxPoint x="120" y="400" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="JRYB5nmN3bFoew6HLBh7-9" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;サーバー証明書を検証する&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;証明書が信頼できる認証局（CA）によって署名されているか確認する&lt;/span&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" parent="1" edge="1">
+        <mxCell id="JRYB5nmN3bFoew6HLBh7-9" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;TLSサーバー証明書を検証する&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;ブラウザが持つ、信頼する認証局のリストを基に、&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;証明書が信頼できる認証局（CA）によって署名されているか確認する&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" parent="1" edge="1">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="124" y="480" as="sourcePoint" />
             <mxPoint x="120" y="640" as="targetPoint" />
@@ -58,10 +58,10 @@
             <mxPoint x="698" y="840" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="be_rkCsHkYYseGhHyJCs-4" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Finishメッセージを送信する&lt;/font&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;クライアントシークレット、サーバーシークレットと&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;プリマスターシークレットを使ってセッションキーを生成し、&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;セッションキーで暗号化して送る&lt;/span&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
+        <mxCell id="be_rkCsHkYYseGhHyJCs-4" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Finishメッセージを送信する&lt;/font&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;プリマスターシークレットを秘密鍵で復号、&lt;br&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;クライアントシークレット、サーバーシークレットと&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;プリマスターシークレットを使ってセッションキーを生成し、&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;セッションキーで暗号化して送る&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
           <mxGeometry width="80" relative="1" as="geometry">
-            <mxPoint x="700" y="940" as="sourcePoint" />
-            <mxPoint x="120" y="940" as="targetPoint" />
+            <mxPoint x="700" y="960" as="sourcePoint" />
+            <mxPoint x="120" y="960" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="be_rkCsHkYYseGhHyJCs-5" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;リクエストを暗号化して送信する&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;HTTPリクエストをセッションキーで暗号化して送る&lt;/span&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1">
