@@ -33,6 +33,8 @@ HTTPS(Hypertext Transfer Protocol Secure)は、ブラウザとサーバー間で
 
 ### HTTPSの通信過程
 
+![https](drawio/https.drawio.png)
+
 ### 証明書の発行元
 
 ### レスポンスヘッダー
@@ -44,3 +46,6 @@ HTTPS(Hypertext Transfer Protocol Secure)は、ブラウザとサーバー間で
 ## 参考
 
 - [Cloudflare What is HTTPS?](https://www.cloudflare.com/learning/ssl/what-is-https/)
+- [Cloudflare What is a session key? Session keys and TLS handshakes](https://www.cloudflare.com/learning/ssl/what-is-a-session-key/)
+- [Cloudflare What happens in a TLS handshake? | SSL handshake](https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/)
+- [Semrush What Is HTTPS & How Does It Work?](https://www.semrush.com/blog/what-is-https/)
