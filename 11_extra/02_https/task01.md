@@ -37,11 +37,21 @@ HTTPS(Hypertext Transfer Protocol Secure)は、ブラウザとサーバー間で
 
 ### 証明書の発行元
 
+Let’s Encryptなどの無料の証明書を発行するCA(Certificate Authority)があり、  
+個人でも簡単に証明書を取得できるため、詐欺サイトでもSSL化が当たり前になっている。  
+そのため信頼できるCAから発行された証明書であるかどうかを確認する必要がある。
+
 ### レスポンスヘッダー
+
+`Strict-Transport-Security: max-age=<expire-time>`
 
 ### クッキー
 
+`Set-Cookie: <cookie-name>=<cookie-value>; Secure; HttpOnly`
+
 ### HTTPSのときのみreferer
+
+`Referrer-Policy: strict-origin-when-cross-origin`
 
 ## 参考
 
@@ -49,3 +59,8 @@ HTTPS(Hypertext Transfer Protocol Secure)は、ブラウザとサーバー間で
 - [Cloudflare What is a session key? Session keys and TLS handshakes](https://www.cloudflare.com/learning/ssl/what-is-a-session-key/)
 - [Cloudflare What happens in a TLS handshake? | SSL handshake](https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/)
 - [Semrush What Is HTTPS & How Does It Work?](https://www.semrush.com/blog/what-is-https/)
+- [SSLサーバー証明書の違い](https://ssl.sakura.ad.jp/column/attestation-level/)
+- [詐欺サイトもSSL化が当たり前？！フィッシング詐欺被害を回避する4つの対策とは？](https://ssl.sakura.ad.jp/column/phishing/)
+- [Mozilla Strict-Transport-Security](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
+- [Mozilla Set-Cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie)
+- [Mozilla Referrer-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy)
