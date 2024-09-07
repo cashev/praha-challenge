@@ -14,12 +14,16 @@ const data = ref<Todo[]>([
   { id: '00002', task: 'Eat breakfast', complete: false },
   { id: '00003', task: 'Go to work', complete: false }
 ])
+
+const handleRemoveItem = (id: string) => {
+  data.value = data.value.filter((todo) => todo.id !== id)
+}
 </script>
 
 <template>
   <div class="well">
     <h1 class="vert-offset-top-0">To do:</h1>
-    <TodoList :data="data" />
+    <TodoList :data="data" @removeItem="handleRemoveItem" />
     <TodoForm />
   </div>
 </template>
