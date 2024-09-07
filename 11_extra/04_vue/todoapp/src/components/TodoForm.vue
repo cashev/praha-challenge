@@ -1,6 +1,18 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
+const emit = defineEmits<{
+  addItem: [task: string]
+}>()
+
+const task = ref('')
+
 const doSubmit = () => {
-  console.log('doSubmit')
+  if (task.value.trim() === '') {
+    return
+  }
+  emit('addItem', task.value)
+  task.value = ''
 }
 </script>
 
@@ -8,11 +20,16 @@ const doSubmit = () => {
   <div class="commentForm vert-offset-top-2">
     <hr />
     <div class="clearfix">
-      <form class="todoForm form-horizontal" @submit="doSubmit">
+      <form class="todoForm form-horizontal" @submit.prevent="doSubmit">
         <div class="form-group">
           <label class="col-md-2 control-label">Task</label>
           <div class="col-md-10">
-            <input type="text" class="form-control" placeholder="What do you need to do?" />
+            <input
+              type="text"
+              v-model="task"
+              class="form-control"
+              placeholder="What do you need to do?"
+            />
           </div>
         </div>
         <div class="row">
