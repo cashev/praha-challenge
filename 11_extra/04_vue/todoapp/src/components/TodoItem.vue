@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Todo } from './TodoBox.vue'
 
-const props = defineProps<{
+defineProps<{
   todo: Todo
 }>()
 

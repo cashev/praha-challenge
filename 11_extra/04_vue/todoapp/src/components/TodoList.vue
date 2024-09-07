@@ -2,7 +2,7 @@
 import TodoItem from './TodoItem.vue'
 import type { Todo } from './TodoBox.vue'
 
-const props = defineProps<{
+defineProps<{
   data: Todo[]
 }>()
 </script>
