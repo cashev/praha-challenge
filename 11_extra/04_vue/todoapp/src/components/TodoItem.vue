@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import type { Todo } from './TodoBox.vue'
 
 const props = defineProps<{
   todo: Todo
 }>()
 
-const isComplete = ref(props.todo.complete)
-
 const toggleComplete = () => {
-  isComplete.value = !isComplete.value
+  props.todo.complete = !props.todo.complete
 }
 
 const remove = () => {
@@ -17,7 +15,7 @@ const remove = () => {
 }
 
 const classes = computed(() => {
-  return isComplete.value ? 'list-group-item list-group-item-success' : 'list-group-item'
+  return props.todo.complete ? 'list-group-item list-group-item-success' : 'list-group-item'
 })
 </script>
 
