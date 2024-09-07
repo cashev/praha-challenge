@@ -1,6 +1,13 @@
 @import './base.css';
 
-#app {
+.vert-offset-top-0 {
+  margin-top: 0em;
+}
+.vert-offset-top-2 {
+  margin-top: 2em;
+}
+
+/* #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -32,4 +39,4 @@ a,
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
-}
+} */
