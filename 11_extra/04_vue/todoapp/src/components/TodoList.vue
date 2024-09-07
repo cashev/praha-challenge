@@ -7,6 +7,7 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
+  updateItem: [newTodo: Todo]
   removeItem: [id: string]
 }>()
 </script>
@@ -17,6 +18,7 @@ const emit = defineEmits<{
       v-for="todo in data"
       :key="todo.id"
       :todo="todo"
+      @updateItem="emit('updateItem', $event)"
       @removeItem="emit('removeItem', $event)"
     />
   </ul>

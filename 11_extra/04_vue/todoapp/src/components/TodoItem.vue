@@ -7,11 +7,13 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
+  updateItem: [newTodo: Todo]
   removeItem: [id: string]
 }>()
 
 const toggleComplete = () => {
-  props.todo.complete = !props.todo.complete
+  const newTodo = { ...props.todo, complete: !props.todo.complete }
+  emit('updateItem', newTodo)
 }
 
 const classes = computed(() => {
