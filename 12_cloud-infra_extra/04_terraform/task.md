@@ -30,3 +30,4 @@ on linux_amd64
 ### 参考
 
 - [Terraform](https://developer.hashicorp.com/terraform)
+- [Terraform Backend S3](https://developer.hashicorp.com/terraform/language/backend/s3)
