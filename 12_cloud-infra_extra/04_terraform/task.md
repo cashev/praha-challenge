@@ -22,3 +22,7 @@ terraform -v
 Terraform v1.9.5
 on linux_amd64
 ```
+
+### 参考
+
+- [Terraform](https://developer.hashicorp.com/terraform)
