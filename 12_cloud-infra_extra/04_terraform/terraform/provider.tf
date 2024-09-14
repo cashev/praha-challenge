@@ -5,6 +5,10 @@ terraform {
       version = "~> 5.0"
     }
   }
+  backend "s3" {
+    bucket = "praha-challenge-terraform"
+    key    = "terraform.tfstate"
+  }
 }
 
 resource "aws_vpc" "example" {

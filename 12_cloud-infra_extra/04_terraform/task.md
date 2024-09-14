@@ -23,6 +23,10 @@ Terraform v1.9.5
 on linux_amd64
 ```
 
+### S3にStateを保存
+
+![s3-state](./images/s3-state.png)
+
 ### 参考
 
 - [Terraform](https://developer.hashicorp.com/terraform)
