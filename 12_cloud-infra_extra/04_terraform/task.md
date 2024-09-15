@@ -27,6 +27,33 @@ on linux_amd64
 
 ![s3-state](./images/s3-state.png)
 
+### 構築
+
+準備
+
+```sh
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+export AWS_REGION=
+export AWS_ACCOUNT_ID=
+```
+
+Terraformで構築
+
+```sh
+terraform init
+terraform fmt
+terraform validate
+terraform plan
+terraform apply
+```
+
+破棄
+
+```sh
+terraform destroy
+```
+
 ### 参考
 
 - [Terraform](https://developer.hashicorp.com/terraform)
@@ -36,3 +63,6 @@ on linux_amd64
   - [Create and manage an AWS ECS cluster with Terraform](https://www.architect.io/blog/2021-03-30/create-and-manage-an-aws-ecs-cluster-with-terraform/)
   - [Create an AWS ECS Cluster Using Terraform](https://dev.to/thnery/create-an-aws-ecs-cluster-using-terraform-g80)
   - [ECS/FargateでAuto Scalingの設定をしてみた](https://blog.adachin.me/archives/47303)
+- RDS
+  - [Manage AWS RDS instances](https://developer.hashicorp.com/terraform/tutorials/aws/aws-rds)
+  - [How to Create an AWS RDS Instance Using Terraform](https://spacelift.io/blog/terraform-aws-rds)
