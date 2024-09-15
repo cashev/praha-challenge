@@ -30,7 +30,9 @@ on linux_amd64
 ### 参考
 
 - [Terraform](https://developer.hashicorp.com/terraform)
+- [Terraform ベストプラクティスを整理してみました。](https://dev.classmethod.jp/articles/terraform-bset-practice-jp/)
 - [Terraform Backend S3](https://developer.hashicorp.com/terraform/language/backend/s3)
 - ECS
   - [Create and manage an AWS ECS cluster with Terraform](https://www.architect.io/blog/2021-03-30/create-and-manage-an-aws-ecs-cluster-with-terraform/)
   - [Create an AWS ECS Cluster Using Terraform](https://dev.to/thnery/create-an-aws-ecs-cluster-using-terraform-g80)
+  - [ECS/FargateでAuto Scalingの設定をしてみた](https://blog.adachin.me/archives/47303)

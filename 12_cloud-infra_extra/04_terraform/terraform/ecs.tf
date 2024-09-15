@@ -24,6 +24,15 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
+resource "aws_cloudwatch_log_group" "main" {
+  name              = "/ecs/main-logs"
+  retention_in_days = 1
+
+  tags = {
+    Name = "main-log-group"
+  }
+}
+
 resource "aws_ecs_task_definition" "main" {
   family = "main-task"
   container_definitions = jsonencode([{
@@ -36,6 +45,14 @@ resource "aws_ecs_task_definition" "main" {
       containerPort = 80
       hostPort      = 80
     }]
+    logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        "awslogs-group"         = "${aws_cloudwatch_log_group.main.id}"
+        "awslogs-region"        = "${data.aws_region.current.name}"
+        "awslogs-stream-prefix" = "main"
+      }
+    }
   }])
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
@@ -129,5 +146,48 @@ resource "aws_lb_listener" "main" {
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.main.arn
+  }
+}
+
+resource "aws_appautoscaling_target" "main" {
+  max_capacity       = 2
+  min_capacity       = 1
+  resource_id        = "service/${aws_ecs_cluster.main.name}/${aws_ecs_service.main.name}"
+  scalable_dimension = "ecs:service:DesiredCount"
+  service_namespace  = "ecs"
+}
+
+resource "aws_appautoscaling_policy" "main" {
+  name               = "main-scale-out-policy"
+  policy_type        = "StepScaling"
+  resource_id        = aws_appautoscaling_target.main.resource_id
+  scalable_dimension = aws_appautoscaling_target.main.scalable_dimension
+  service_namespace  = aws_appautoscaling_target.main.service_namespace
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 60
+    metric_aggregation_type = "Average"
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 1
+    }
+  }
+}
+
+resource "aws_cloudwatch_metric_alarm" "main" {
+  alarm_name          = "main-cpu-alarm"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = 2
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/ECS"
+  period              = 60
+  statistic           = "Average"
+  threshold           = 40
+  alarm_description   = "This metric monitors ECS CPU utilization"
+  alarm_actions       = [aws_appautoscaling_policy.main.arn]
+  dimensions = {
+    ClusterName = aws_ecs_cluster.main.name
+    ServiceName = aws_ecs_service.main.name
   }
 }
