@@ -21,6 +21,25 @@ resource "aws_internet_gateway" "main" {
   }
 }
 
+resource "aws_eip" "main" {
+  count = local.az_count
+
+  tags = {
+    Name = "main-eip-${count.index + 1}"
+  }
+  depends_on = [aws_internet_gateway.main]
+}
+
+resource "aws_nat_gateway" "main" {
+  count         = local.az_count
+  allocation_id = aws_eip.main[count.index].id
+  subnet_id     = aws_subnet.public[count.index].id
+
+  tags = {
+    Name = "main-nat-${count.index + 1}"
+  }
+}
+
 resource "aws_subnet" "public" {
   count                   = local.az_count
   vpc_id                  = aws_vpc.main.id
@@ -60,6 +79,11 @@ resource "aws_default_route_table" "default" {
 resource "aws_route_table" "private" {
   count  = local.az_count
   vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.main[count.index].id
+  }
 
   tags = {
     Name = "main-private-rt-${count.index + 1}"

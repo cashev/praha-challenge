@@ -52,7 +52,7 @@ resource "aws_ecs_service" "main" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets         = aws_subnet.private[*].id
+    subnets         = aws_subnet.private.*.id
     security_groups = [aws_security_group.ecs_task.id]
   }
 
@@ -108,7 +108,7 @@ resource "aws_lb" "main" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.lb.id]
-  subnets            = aws_subnet.public[*].id
+  subnets            = aws_subnet.public.*.id
 
   enable_deletion_protection = false
 }
@@ -130,77 +130,4 @@ resource "aws_lb_listener" "main" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.main.arn
   }
-}
-
-resource "aws_security_group" "ecr_endpoint_sg" {
-  name        = "ecr-endpoint-sg"
-  description = "Security group for ECR VPC endpoints"
-  vpc_id      = aws_vpc.main.id
-
-  ingress {
-    description = "HTTPS from VPC"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = [aws_vpc.main.cidr_block]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-resource "aws_vpc_endpoint" "ecr_api" {
-  vpc_id              = aws_vpc.main.id
-  service_name        = "com.amazonaws.${data.aws_region.current.name}.ecr.api"
-  vpc_endpoint_type   = "Interface"
-  private_dns_enabled = true
-  subnet_ids          = aws_subnet.private[*].id
-  security_group_ids  = [aws_security_group.ecr_endpoint_sg.id]
-}
-
-resource "aws_vpc_endpoint" "ecr_dkr" {
-  vpc_id              = aws_vpc.main.id
-  service_name        = "com.amazonaws.${data.aws_region.current.name}.ecr.dkr"
-  vpc_endpoint_type   = "Interface"
-  private_dns_enabled = true
-  subnet_ids          = aws_subnet.private[*].id
-  security_group_ids  = [aws_security_group.ecr_endpoint_sg.id]
-}
-
-resource "aws_vpc_endpoint" "s3" {
-  vpc_id            = aws_vpc.main.id
-  service_name      = "com.amazonaws.${data.aws_region.current.name}.s3"
-  vpc_endpoint_type = "Gateway"
-  route_table_ids   = aws_route_table.private[*].id
-}
-
-resource "aws_vpc_endpoint" "ecs" {
-  vpc_id              = aws_vpc.main.id
-  service_name        = "com.amazonaws.${data.aws_region.current.name}.ecs"
-  vpc_endpoint_type   = "Interface"
-  private_dns_enabled = true
-  subnet_ids          = aws_subnet.private[*].id
-  security_group_ids  = [aws_security_group.ecs_task.id]
-}
-
-resource "aws_vpc_endpoint" "ecs_agent" {
-  vpc_id              = aws_vpc.main.id
-  service_name        = "com.amazonaws.${data.aws_region.current.name}.ecs-agent"
-  vpc_endpoint_type   = "Interface"
-  private_dns_enabled = true
-  subnet_ids          = aws_subnet.private[*].id
-  security_group_ids  = [aws_security_group.ecs_task.id]
-}
-
-resource "aws_vpc_endpoint" "ecs_telemetry" {
-  vpc_id              = aws_vpc.main.id
-  service_name        = "com.amazonaws.${data.aws_region.current.name}.ecs-telemetry"
-  vpc_endpoint_type   = "Interface"
-  private_dns_enabled = true
-  subnet_ids          = aws_subnet.private[*].id
-  security_group_ids  = [aws_security_group.ecs_task.id]
 }
